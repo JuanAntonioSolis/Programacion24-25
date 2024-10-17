@@ -22,5 +22,7 @@ public class EjercicioAcumulador2 {
         System.out.println("La suma de los números pares es " + totalPar);
         System.out.println("La suma de los números impares es " + totalImpar);
 
+        System.out.println("Prueba");
+
     }
 }
