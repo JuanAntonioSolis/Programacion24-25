@@ -96,6 +96,6 @@ public class Ejemplo1While {
 
         System.out.println(contraseña + " es una contraseña válida.");
 
-
+System.out.println("borrar");
     }
 }
