@@ -34,18 +34,18 @@ public class Ejercicio2 {
 
 
         int numero = 1;
-        int cuenta = 0;
+        int i = 0;
         int cuentaPar = 0;
         int cuentaImpar = 0;
 
-        while (cuenta <= 20) {
+        while (i <= 20) {
             numero = (int) (Math.random()*(200-1+1)+1);
             System.out.println(numero);
             if (numero%2==0) {
                 cuentaPar++;
             } else
                 cuentaImpar++;
-            cuenta++;
+            i++;
         }
 
         System.out.println("Se han generado " + cuentaPar + " números pares");
