@@ -10,6 +10,10 @@ public class Ejercicio7 {
         a jugar y al final indica cuántas partidas ha ganado cada uno.
          */
 
+        String tiradaP1 ="";
+        String tiradaP2 ="";
+
+
 
 
     }
