@@ -9,21 +9,25 @@ public class Ejercicio10 {
         /*
         Programa (utilizando bucles) que muestre por pantalla la siguiente figura. Debe funcionar para n = numero
         de líneas, que se pida por teclado.
+        *
+        **
+        ***
+        ****
+        *****
          */
 
-        int n, cont;
+        int n;
         Scanner sc = new Scanner(System.in);
         System.out.println("Escribe cuántas líneas quieres pintar:");
         n = Integer.parseInt(sc.nextLine());
 
-        for (int i = 0; i < n; i++) {
-            System.out.println("*");
-            for (int j = 0; j < n; j++) {
+        for (int fila = 1; fila <= n; fila++) {
+            for (int columna = 1; columna <= fila; columna++) {
+                System.out.print("*");
 
             }
-
+            System.out.println();
         }
-
 
 
     }
