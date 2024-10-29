@@ -12,7 +12,7 @@ public class Ejercicio16 {
         media. Deberá mostrarla por pantalla.
          */
 
-        int num, suma, cont;
+        double num, suma, cont;
         suma = 0;
         num = 0;
         cont = 0;
