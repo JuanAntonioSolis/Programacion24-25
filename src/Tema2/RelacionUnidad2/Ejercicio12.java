@@ -1,20 +1,23 @@
 package Tema2.RelacionUnidad2;
 
+
+/*
+Programa (utilizando bucles) que muestre por pantalla la siguiente figura. Debe funcionar para n =
+número de líneas, que se pida por teclado
+ */
+
+
 import java.util.Scanner;
 
-public class Ejercicio11 {
+public class Ejercicio12 {
 
     public static void main(String[] args) {
 
         /*
-        Programa (utilizando bucles) que muestre por pantalla la siguiente figura. Debe funcionar para n =
-        número de líneas, que se pida por teclado.
-
-            *
-           **
+           *
           ***
-         ****
-
+         *****
+        *******
          */
 
         int n;
@@ -29,7 +32,7 @@ public class Ejercicio11 {
             for (int j = 1; j <= i; j++) {
                 System.out.print("*");
             }
-            System.out.println();
+            for (int j = 4; j <= i; j++) {}
         }
 
 

@@ -18,13 +18,12 @@ public class Ejercicio10 {
 
         int n;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Escribe cuántas líneas quieres pintar:");
+        System.out.println("Introduce cuántas líneas quieres pintar:");
         n = Integer.parseInt(sc.nextLine());
 
-        for (int fila = 1; fila <= n; fila++) {
-            for (int columna = 1; columna <= fila; columna++) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
                 System.out.print("*");
-
             }
             System.out.println();
         }
