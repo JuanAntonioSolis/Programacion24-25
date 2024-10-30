@@ -1,6 +1,19 @@
 package Tema2.PracticaEquipos;
 
+import java.util.Scanner;
+
 public class Ejercicio2 {
+
+    public static int tirada() {
+        int dado1=tiradaDados();
+        int dado2=tiradaDados();
+        int dado3=tiradaDados();
+        int dado4=tiradaDados();
+        int dado5=tiradaDados();
+
+        return sumaTirada(dado1,dado2,dado3,dado4,dado5);
+
+    }
 
     public static int tiradaDados(){
         return (int) (Math.random() * 13 + 1);
@@ -77,38 +90,41 @@ public class Ejercicio2 {
     Escriba un programa que simule varias partidas seguidas de este juego de dados.
          */
 
+        int rondas;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Escribe cuántas rondas se van a jugar");
+        rondas = Integer.parseInt(sc.nextLine());
+        int victoriasC = 0;
+        int victoriasH = 0;
 
-        int tirada1C = tiradaDados();
-        int tirada2C = tiradaDados();
-        int tirada3C = tiradaDados();
-        int tirada4C = tiradaDados();
-        int tirada5C = tiradaDados();
 
-        int tirada1H = tiradaDados();
-        int tirada2H = tiradaDados();
-        int tirada3H = tiradaDados();
-        int tirada4H = tiradaDados();
-        int tirada5H = tiradaDados();
-
-        int mayorCubitus = maximoTirada(tirada1C, tirada2C, tirada3C, tirada4C,tirada5C);
-        int menorCubits = minimoTirada(tirada1C, tirada2C, tirada3C, tirada4C,tirada5C);
-        int mayorHumerus = maximoTirada(tirada1H,tirada2H,tirada3H,tirada4H,tirada5H);
-        int menorHumerus = minimoTirada(tirada1H,tirada2H,tirada3H,tirada4H,tirada5H);
+        for (int i = 1; i <= rondas; i++) {
+            int totalC = tirada();
+            int totalH = tirada();
 
 
 
 
-        System.out.printf("%d %d %d %d %d",tirada1C,tirada2C,tirada3C,tirada4C,tirada5C);
-        System.out.println();
-        System.out.println("Mayor C: " + mayorCubitus);
-        System.out.println("Menor C: " + menorCubits);
-        System.out.println("Total C: " + sumaTirada(tirada1C,tirada2C,tirada3C,tirada4C,tirada5C));
-        System.out.printf("%d %d %d %d %d",tirada1H,tirada2H,tirada3H,tirada4H,tirada5H);
-        System.out.println();
-        System.out.println("Mayor H: " + mayorHumerus);
-        System.out.println("Menor H: " + menorHumerus);
-        System.out.println("Total H: " + sumaTirada(tirada1H,tirada2H,tirada3H,tirada4H,tirada5H));
+            System.out.println("Total Cubitus: " + totalC);
+            System.out.println("Total Humerus: " + totalH);
 
+            if (totalC > totalH) {
+                victoriasC++;
+            } else if (totalC < totalH) {
+                victoriasH++;
+            }
+        }
+
+        System.out.println("Cubitus ha ganado : " + victoriasC + " partidas");
+        System.out.println("Humerus ha ganado : " + victoriasH + " partidas");
+
+        if (victoriasC > victoriasH) {
+            System.out.println("Cubitus gana la partida.");
+        } else if (victoriasC < victoriasH) {
+            System.out.println("Humerus gana la partida.");
+
+        } else
+            System.out.println("Es un empate");
 
     }
 }
