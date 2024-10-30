@@ -9,12 +9,12 @@ public class EjemploCapturaExcepcion {
         Scanner sc = new Scanner(System.in);
 
         boolean error = true;
-        while (error == true) {
+        while (error) {
             System.out.println("Dame un número");
 
             //Controlar errores
             try {
-                //Intento ejecutar todo este código
+                //Intento ejecutar tod0 el código
                 int numero = Integer.parseInt(sc.nextLine());
                 System.out.println(numero / 0);
                 error = false;
