@@ -16,6 +16,8 @@ public class Ejercicio3 {
         int sumaDadosC = 0;
         int sumaDadosH = 0;
 
-        if (tiradaC % 2 == 0 ||)
+        if (tiradaC % 2 == 0 ){
+            System.out.println("hola");
+        }
     }
 }
