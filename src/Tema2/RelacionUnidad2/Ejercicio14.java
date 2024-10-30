@@ -14,7 +14,7 @@ public class Ejercicio14 {
         !!!!Preguntar al profe como hacerlo bien!!!!!
          */
 
-        int num1, num2, contPares;
+        int num1, num2, contPares, cambio;
 
         contPares = 0;
 
@@ -23,6 +23,12 @@ public class Ejercicio14 {
         num1 = Integer.parseInt(sc.nextLine());
         System.out.println("Escribe el segundo número:");
         num2 = Integer.parseInt(sc.nextLine());
+
+        if (num1 > num2) {
+            cambio = num2;
+            num2 = num1;
+            num1 = cambio;
+        }
 
         for (int i = num1; i < num2; i++) {
             if (i % 2 == 0) {
