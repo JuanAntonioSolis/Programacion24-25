@@ -9,11 +9,34 @@ import java.util.Scanner;
 
 public class Ejercicio19 {
 
+    public static boolean calculoPrimo(int num) {
+        boolean primo = true;
+        for (int i = num - 1; i>=2;i--) {
+            if (num % i == 0) {
+                return false;
+            } else
+                return true;
+        }
+
+        return primo;
+    }
+
     public static void main(String[] args) {
 
         int num;
+        boolean primo = true;
 
         Scanner sc = new Scanner(System.in);
+
+        System.out.println("Introduce un número:");
+        num = sc.nextInt();
+
+        calculoPrimo(num);
+        System.out.println(primo);
+
+
+
+
 
 
     }
