@@ -103,8 +103,6 @@ public class Ejercicio2 {
             int totalH = tirada();
 
 
-
-
             System.out.println("Total Cubitus: " + totalC);
             System.out.println("Total Humerus: " + totalH);
 
