@@ -8,6 +8,8 @@ public class Ejercicio8 {
         Realiza un programa que pinte los 20 primeros términos de esta serie: 1, -2, 3, -4, 5, -6,...
          */
 
+        //Si es par multiplico por menos 1
+
 
     }
 }

@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Ejercicio2 {
 
+
+
     public static int tirada() {
         int dado1=tiradaDados();
         int dado2=tiradaDados();
