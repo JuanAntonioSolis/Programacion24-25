@@ -11,7 +11,7 @@ public class Ejercicio14 {
         Programa que lea dos números positivos e imprima por pantalla todos los números pares que estén entre los dos
         números dados. También debe indicar cuántos números pares hay en ese intervalo.
 
-        !!!!Preguntar al profe como hacerlo bien!!!!!
+
          */
 
         int num1, num2, contPares, cambio;

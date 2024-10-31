@@ -30,6 +30,14 @@ public class Ejercicio19 {
         System.out.println("Introduce un número:");
         num = sc.nextInt();
 
+        if (calculoPrimo(num)) {
+            System.out.println("Es un número primo");
+        } else {
+            System.out.println("No es un número primo");
+        }
+
+
+
 
 
 
