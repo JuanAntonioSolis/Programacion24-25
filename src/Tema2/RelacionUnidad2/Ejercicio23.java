@@ -17,24 +17,24 @@ public class Ejercicio23 {
 
         if (dia < 1 && dia > 31) {
             System.out.println("No es un día válido");
-            correcto = false;
+            return false;
         }
         if (mes < 1 && mes > 12) {
             System.out.println("No es un mes válido");
-            correcto = false;
+            return false;
         }
 
         switch (mes) {
             case 2:
                 if (dia > 28) {
                     System.out.println("Febrero no tiene tantos días");
-                    correcto = false;
+                    return false;
                 }
 
             case 4,6,9,11:
                 if (dia > 30) {
                     System.out.println("El mes no puede tener tantos días");
-                    correcto = false;
+                    return false;
                 }
         }
 
