@@ -25,12 +25,95 @@ public class Ejercicio2CubitusHumerus1 {
         return (int) (Math.random() * 6 + 1);
     }
 
+    public static int sumaDados() {
+
+        int suma = 0;
+
+        int dado1 = tiradaDados();
+        int dado2 = tiradaDados();
+        int dado3 = tiradaDados();
+        int dado4 = tiradaDados();
+        int dado5 = tiradaDados();
+
+
+        //La suma de todos los dados.
+        suma = dado1 + dado2 + dado3 + dado4 + dado5;
+
+
+        //Se suman 20 puntos en caso de que todos los dados sean iguales
+        if (dado1 == dado2 && dado1 == dado3 && dado1 == dado4 && dado1 == dado5 ) {
+            suma += 20;
+        }
+
+        //Si la suma de los dados no llega a 8 se restan 5 puntos de la puntuacion total
+        if (suma < 8) {
+            suma -= 5;
+        }
+
+        System.out.println(dado1);
+        System.out.println(dado2);
+        System.out.println(dado3);
+        System.out.println(dado4);
+        System.out.println(dado5);
+        System.out.println();
+
+
+        return suma;
+    }
+
 
 
 
     public static void main(String[] args) {
 
-        //int tiradaC, tiradaH;
+        int tiradaC, tiradaH;
+        int puntosC = 0, puntosH = 0;
+        int ronda;
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Escribe cuántas rondas se van a jugar:");
+        ronda = Integer.parseInt(sc.nextLine());
+
+        for (int i = 0; i < ronda; i++) {
+
+            tiradaC = sumaDados();
+            tiradaH = sumaDados();
+
+            System.out.println(tiradaC);
+            System.out.println(tiradaH);
+
+            if (tiradaC > tiradaH) {
+                System.out.println("Cubitus gana la ronda");
+                puntosC++;
+            } else if (tiradaC < tiradaH) {
+                System.out.println("Humerus gana la ronda");
+                puntosH++;
+            } else {
+                System.out.println("Es un empate");
+            }
+
+        }
+
+        System.out.println("Puntos acumulados Cubitus: " + puntosC);
+        System.out.println("Puntos acumulados Humerus: " + puntosH);
+
+        if (puntosC > puntosH) {
+            System.out.println("Cubitus gana la partida");
+        } else if (puntosC < puntosH) {
+            System.out.println("Humerus gana la partida");
+        } else {
+            System.out.println("Es un empate");
+        }
+
+
+
+
+
+
+
+
+        /*
+        int tiradaC, tiradaH;
         int victoriasC = 0, victoriasH = 0, rondas = 0, puntuacionC = 0, puntuacionH = 0;
 
 
@@ -39,6 +122,8 @@ public class Ejercicio2CubitusHumerus1 {
         Scanner sc = new Scanner(System.in);
         System.out.println("Escribe cuántas rondas se van a jugar:");
         rondas = Integer.parseInt(sc.nextLine());
+
+
 
         for (int i = 1; i <= rondas; i++) {
 
@@ -108,7 +193,7 @@ public class Ejercicio2CubitusHumerus1 {
             System.out.println("Cubitus lleva " + puntuacionC + " puntos.");
             System.out.println("Humerus lleva " + puntuacionH + " puntos.");
 
-            /*
+
             if (puntuacionC > puntuacionH) {
                 victoriasC++;
                 System.out.println("Cubitus gana la ronda.");
@@ -117,7 +202,7 @@ public class Ejercicio2CubitusHumerus1 {
                 System.out.println("Humerus gana la ronda.");
             }
 
-             */
+
 
 
 
@@ -134,6 +219,8 @@ public class Ejercicio2CubitusHumerus1 {
             System.out.println("Humerus gana la partida.");
         } else
             System.out.println("Es un empate");
+
+         */
 
 
 

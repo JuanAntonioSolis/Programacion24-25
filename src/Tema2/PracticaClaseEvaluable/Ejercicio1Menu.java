@@ -15,6 +15,18 @@ import java.util.Scanner;
 
 public class Ejercicio1Menu {
 
+    public static int sumaDigitos (int num) {
+        int total = 0;
+
+        while (num > 0) {
+            total += num % 10;
+            num = num / 10;
+        }
+
+        return total;
+
+    }
+
     public static boolean primo(int num) {
 
         boolean primo = true;
@@ -61,15 +73,7 @@ public class Ejercicio1Menu {
 
             switch (opcion) {
                 case 1:
-
-                    while (num / 10 != 0) {
-                        System.out.println(num % 10);
-                        num = num / 10;
-                        if (num / 10 == 0) {
-                            System.out.println(num);
-                        }
-                    }
-
+                    System.out.println("La suma de sus dígitos es: " + sumaDigitos (num));
                     break;
                 case 2:
                     if (primo(num)) {
