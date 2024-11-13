@@ -17,7 +17,7 @@ public class Ej4 {
         System.out.println("Escribe de cuántas personas quieres calcular las alturas: ");
         numeroPersonas = Integer.parseInt(sc.nextLine());
 
-        int alturas[] = new int[];
+        int alturas[] = new int[2];
 
 
     }
