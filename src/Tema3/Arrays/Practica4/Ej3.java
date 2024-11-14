@@ -48,7 +48,9 @@ public class Ej3 {
             }
 
             if (numeros[i] % 10 == digito) {
-
+                //int j = 0;
+                //j++ en do while
+                //digitosMostrados[j] = numeros[i];
             }
 
         }

@@ -10,14 +10,33 @@ import java.util.Scanner;
 
 public class Ej4 {
 
+    public static double aleatorio(double mayor, double menor) {
+        return (Math.random() * (mayor - menor + 1)) + menor;
+    }
+
     public static void main(String[] args) {
 
         int numeroPersonas;
+        double media = 1.62;
+        int contBajos = 0;
+        int contAltos = 0;
         Scanner sc = new Scanner(System.in);
         System.out.println("Escribe de cuántas personas quieres calcular las alturas: ");
         numeroPersonas = Integer.parseInt(sc.nextLine());
 
-        int alturas[] = new int[2];
+
+        double alturas[] = new double[numeroPersonas];
+
+        for (int i = 0; i < alturas.length; i++) {
+            alturas[i] = aleatorio(1.95,1.45);
+            if (alturas[i] > media) {
+                contAltos++;
+            } else
+                contBajos++;
+        }
+
+        System.out.println(contAltos + " están por encima de la media");
+        System.out.println(contBajos + " están por debajo de la media");
 
 
     }
