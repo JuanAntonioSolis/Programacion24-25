@@ -6,6 +6,7 @@ y mostrar aquellos números que acaben en un dígito que nosotros le indiquemos 
 que se introduce un numero correcto), estos deben guardarse en un nuevo array. Por ejemplo, en un array de 10
 posiciones e indicamos mostrar los números acabados en 5, podría salir 155, 25, etc. Cuando llene el segundo
 array finalizamos.
+DUDA PROFESOR
  */
 
 import java.util.Scanner;
@@ -38,24 +39,25 @@ public class Ej3 {
             System.out.println(numeros[i]);
         }
 
+        try {
+            System.out.println("Indica un dígito y se mostrarán los 5 primeros valores que acaben en ese dígito: ");
+            digito = Integer.parseInt(sc.nextLine());
+        }catch (Exception e) {
+            System.out.println("Introduce un valor válido:");
+        }
 
         for (int i = 0; i < numeros.length; i++) {
-            try {
-                System.out.println("Indica un dígito y se mostrarán los 5 primeros valores que acaben en ese dígito: ");
-                digito = Integer.parseInt(sc.nextLine());
-            }catch (Exception e) {
-                System.out.println("Introduce un valor válido:");
-            }
 
             if (numeros[i] % 10 == digito) {
-                //int j = 0;
-                //j++ en do while
-                //digitosMostrados[j] = numeros[i];
+                while (contadorDigitos < 5) {
+                    contadorDigitos ++;
+                    digitosMostrados[contadorDigitos] = numeros[i];
+                    System.out.println(digitosMostrados[i]);
+                }
+
             }
 
         }
-
-
 
 
 

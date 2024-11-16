@@ -3,6 +3,7 @@ package Tema3.Arrays.Practica4;
 /*
 Crea una función que reciba como parámetro un array de 10 enteros, debe devolver el mismo array donde se
 hayan intercambiado el primer elemento y el último elemento
+DUDA PROFESOR
  */
 
 public class Ej2 {
@@ -15,8 +16,8 @@ public class Ej2 {
         for (int i = 0; i < numero.length; i++) {
 
             cambio = numero[0];
-            numero[0] = numero[9];
-            numero[9] = cambio;
+            numero[0] = numero[numero.length-1];
+            numero[numero.length-1] = cambio;
             return numero[i];
         }
 
@@ -36,7 +37,6 @@ public class Ej2 {
             numeros[i] = aleatorio(15, 1);
             System.out.println(numeros[i]);
         }
-
 
         System.out.println("Ese vector con el primer y el último valor intercambiados es: " + intercambio(numeros));
 
