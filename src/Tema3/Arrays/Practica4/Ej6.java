@@ -24,13 +24,14 @@ public class Ej6 {
             System.out.println(numeros[i]);
         }
 
-
         System.out.println();
-        for (int i = 0; i < numeros.length / 2; i++) {
 
-            System.out.println(numeros[i] + " ");
+        for (int i = 0; i < numeros.length / 2; i++) {
+            System.out.println(numeros[i]);
             System.out.println(numeros[numeros.length - 1 - i]);
         }
+
+
 
 
 

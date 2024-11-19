@@ -8,10 +8,12 @@ se ha corrido la carrera. Pista: ordénalo antes.
 DUDA PROFESOR
  */
 
+import java.util.Arrays;
+
 public class Ej9 {
 
-    public static double aleatorio(double mayor, double menor) {
-        return  (Math.random() * (mayor - menor + 1)) + menor;
+    public static int aleatorio(int mayor, int menor) {
+        return (int) (Math.random() * (mayor - menor + 1)) + menor;
     }
 
     public static double primero(double arr[]) {
@@ -43,11 +45,11 @@ public class Ej9 {
 
     public static void main(String[] args) {
 
-        double tiempos[] = new double[9];
+        int tiempos[] = new int[9];
         double tiemposOrdenados[] = new double[9];
-        double suma = 0;
+        int suma = 0;
 
-
+        /*
         for (int i = 0; i < tiempos.length; i++) {
             tiempos[i] = aleatorio(4.20,4.00);
         }
@@ -58,6 +60,21 @@ public class Ej9 {
 
         System.out.println("El ganador tiene un tiempo de " + primero(tiempos));
         System.out.println("El último tiene un tiempo de " + ultimo(tiempos));
+
+         */
+
+        for (int i = 0; i < tiempos.length; i++) {
+            tiempos[i] = aleatorio(200,10);
+            suma += tiempos[i];
+        }
+
+        Arrays.sort(tiempos);
+
+        System.out.println("El primero en llegar hace un tiempo de " + tiempos[0] + " minutos");
+        System.out.println("El segundo en llegar hace un tiempo de " + tiempos[1] + " minutos");
+        System.out.println("El último en llegar hace un tiempo de " + tiempos[tiempos.length-1] + " minutos");
+        System.out.println("La media de tiempos es " + suma / tiempos.length + " minutos");
+
 
 
 

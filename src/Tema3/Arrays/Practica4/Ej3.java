@@ -22,14 +22,14 @@ public class Ej3 {
         int size;
 
         int digito = -1;
-        int digitosMostrados[] = new int[5];
-        int contadorDigitos = 0;
+        int digitosMostrados[] = new int[5]; // segundo array
+        int j = 0;
 
         Scanner sc = new Scanner(System.in);
         System.out.println("Escribe el tamaño del que quieres el array: ");
         size = Integer.parseInt(sc.nextLine());
 
-        int numeros[] = new int[size];
+        int numeros[] = new int[size]; //Primer array
 
         for (int i = 0; i < numeros.length; i++) {
             numeros[i] = aleatorio(300, 1);
@@ -49,9 +49,9 @@ public class Ej3 {
         for (int i = 0; i < numeros.length; i++) {
 
             if (numeros[i] % 10 == digito) {
-                while (contadorDigitos < 5) {
-                    contadorDigitos ++;
-                    digitosMostrados[contadorDigitos] = numeros[i];
+                while (j < 5) {
+                    j++;
+                    digitosMostrados[j] = numeros[i];
                     System.out.println(digitosMostrados[i]);
                 }
 

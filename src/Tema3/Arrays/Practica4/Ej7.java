@@ -25,16 +25,32 @@ public class Ej7 {
             tabla[i] = Integer.parseInt(sc.next());
         }
 
-        for (int i = 0; i < tabla.length; i++) {
-            System.out.println(tabla[tabla.length -1 - i]);
+        int temporal = tabla[tabla.length-1];
+
+        for (int i = tabla.length-1; i > 0;i--) {
+            tabla[i] = tabla[i-1];
         }
+        tabla[0] = temporal;
+
+        for (int i = 0; i < tabla.length; i++) {
+            System.out.println(tabla[i]);
+        }
+
 
         System.out.println("Escribe cuántas posiciones quieres desplazar el vector: ");
         n = Integer.parseInt(sc.next());
 
+        for (int cont = 0; cont < n; cont++) {
+            temporal = tabla[tabla.length-1];
+            for (int i = tabla.length-1; i > 0;i--) {
+                tabla[i] = tabla[i-1];
+            }
+            tabla[0] = temporal;
+        }
 
-
-
+        for (int i = 0; i < tabla.length; i++) {
+            System.out.println(tabla[i]);
+        }
 
 
     }
