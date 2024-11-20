@@ -16,6 +16,13 @@ public class Ej8 {
         return (int) (Math.random() * (mayor - menor + 1)) + menor;
     }
 
+    public static void pintar(int numeros[]) {
+        for(int i=0; i < numeros.length; i++) {
+            System.out.print(numeros[i] + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
 
         int tabla[] = new int[10];
@@ -26,20 +33,19 @@ public class Ej8 {
             tabla[i] = aleatorio(10, 1);
         }
 
+        pintar(tabla);
+
         System.out.println("Escribe una posición (0-9) del vector:");
         posicion = Integer.parseInt(sc.nextLine());
 
-       tabla[posicion] = 0;
 
-        for (int i = 0; i < tabla.length; i++) {
-            System.out.println(tabla[i]);
+        for (int i = posicion; i < tabla.length-1; i++) {
+            tabla[i] = tabla[i+1];
+
         }
+        tabla[tabla.length-1] = 0;
 
-
-
-
-
-
+        pintar(tabla);
 
     }
 }

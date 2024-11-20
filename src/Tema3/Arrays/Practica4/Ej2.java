@@ -9,23 +9,23 @@ HACER CON VOID EN LA FUNCION
 
 public class Ej2 {
 
-    public static int[] intercambio(int num[]) {
-        int cambio;
+    public static void intercambio(int num[]) {
 
-        int numero[] = new int[10];
+        int cambio = num[0];
+        num[0] = num[num.length-1];
+        num[num.length-1] = cambio;
 
-        for (int i = 0; i < numero.length; i++) {
-
-            cambio = numero[0];
-            numero[0] = numero[numero.length-1];
-            numero[numero.length-1] = cambio;
-        }
-
-        return num;
     }
 
     public static int aleatorio(int mayor, int menor) {
         return (int) (Math.random() * (mayor - menor + 1)) + menor;
+    }
+
+    public static void pintar(int numeros[]) {
+        for(int i=0; i < numeros.length; i++) {
+            System.out.print(numeros[i] + " ");
+        }
+        System.out.println();
     }
 
 
@@ -35,10 +35,18 @@ public class Ej2 {
 
         for (int i = 0; i < numeros.length; i++) {
             numeros[i] = aleatorio(15, 1);
-            System.out.println(numeros[i]);
         }
 
-        System.out.println("Ese vector con el primer y el último valor intercambiados es: " + intercambio(numeros));
+        pintar(numeros);
+
+        intercambio(numeros);
+
+        pintar(numeros);
+
+
+
+
+
 
 
 

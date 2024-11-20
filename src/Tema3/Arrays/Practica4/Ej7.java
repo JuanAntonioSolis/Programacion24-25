@@ -11,6 +11,13 @@ import java.util.Scanner;
 
 public class Ej7 {
 
+    public static void pintar(int numeros[]) {
+        for(int i=0; i < numeros.length; i++) {
+            System.out.print(numeros[i] + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
 
         int tabla[] = new int[5]; // 8, 9, 10, 4, 5
@@ -25,32 +32,30 @@ public class Ej7 {
             tabla[i] = Integer.parseInt(sc.next());
         }
 
-        int temporal = tabla[tabla.length-1];
+        pintar(tabla);
+
+        int cambio = tabla[tabla.length-1];
 
         for (int i = tabla.length-1; i > 0;i--) {
             tabla[i] = tabla[i-1];
         }
-        tabla[0] = temporal;
+        tabla[0] = cambio;
 
-        for (int i = 0; i < tabla.length; i++) {
-            System.out.println(tabla[i]);
-        }
+        pintar(tabla);
 
 
         System.out.println("Escribe cuántas posiciones quieres desplazar el vector: ");
         n = Integer.parseInt(sc.next());
 
         for (int cont = 0; cont < n; cont++) {
-            temporal = tabla[tabla.length-1];
+            cambio = tabla[tabla.length-1];
             for (int i = tabla.length-1; i > 0;i--) {
                 tabla[i] = tabla[i-1];
             }
-            tabla[0] = temporal;
+            tabla[0] = cambio;
         }
 
-        for (int i = 0; i < tabla.length; i++) {
-            System.out.println(tabla[i]);
-        }
+        pintar(tabla);
 
 
     }

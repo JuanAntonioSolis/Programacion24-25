@@ -17,11 +17,18 @@ public class Ej3 {
         return (int) (Math.random() * (mayor - menor + 1)) + menor;
     }
 
+    public static void pintar(int numeros[]) {
+        for(int i=0; i < numeros.length; i++) {
+            System.out.print(numeros[i] + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
 
         int size;
 
-        int digito = -1;
+        int digito = 0;
         int digitosMostrados[] = new int[5]; // segundo array
         int j = 0;
 
@@ -35,9 +42,7 @@ public class Ej3 {
             numeros[i] = aleatorio(300, 1);
         }
 
-        for (int i = 0; i < numeros.length; i++) {
-            System.out.println(numeros[i]);
-        }
+        pintar(numeros);
 
         try {
             System.out.println("Indica un dígito y se mostrarán los 5 primeros valores que acaben en ese dígito: ");
@@ -47,17 +52,16 @@ public class Ej3 {
         }
 
         for (int i = 0; i < numeros.length; i++) {
-
-            if (numeros[i] % 10 == digito) {
-                while (j < 5) {
-                    j++;
-                    digitosMostrados[j] = numeros[i];
-                    System.out.println(digitosMostrados[i]);
-                }
-
+            if (j >= digitosMostrados.length) {
+                break;
             }
 
+            if (numeros[i] % 10 == digito) {
+                digitosMostrados[j] = numeros[i];
+                j++;
+            }
         }
+        pintar(digitosMostrados);
 
 
 
