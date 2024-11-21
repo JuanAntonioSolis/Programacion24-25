@@ -24,7 +24,10 @@ public class Ej12 {
 
         for (int i = 0; i < marco.length; i++) {
             for (int j = 0; j < marco[i].length; j++) {
-                if (marco[i][j] > 1 ) {
+                if (i == 1 || i == marco.length-1) {
+                    marco[i][j] = 1;
+                }
+                if (j == 0 || j == marco[i].length-1){
                     marco[i][j] = 1;
                 }
 
