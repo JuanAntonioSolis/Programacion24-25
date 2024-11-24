@@ -40,12 +40,21 @@ public class Ej17 {
 
     public static void ordenaColumnas (int matriz[][]) {
 
-        for (int i = 0; i < matriz[i].length; i++) {
-            for (int j = 0; j < matriz.length; j++) {
-                Arrays.sort(matriz[j]);
-            }
-        }
+        int temp=0;
+        for(int k=0; k<matriz.length; k++) {
 
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 1; j < matriz[0].length; j++) {
+
+                    if (matriz[j][i] < matriz[j - 1][i]) {
+                        temp = matriz[j - 1][i];
+                        matriz[j - 1][i] = matriz[j][i];
+                        matriz[j][i] = temp;
+                    }
+                }
+            }
+
+        }
 
 
     }
