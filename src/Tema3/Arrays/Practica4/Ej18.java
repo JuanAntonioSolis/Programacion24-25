@@ -24,11 +24,19 @@ public class Ej18 {
         }
     }
 
-    public static int sumarFila(int arr[][]){
+    public static int sumaFila (int matriz[][]) {
         int suma = 0;
-        for(int i=0; i < arr.length; i++) {
-            suma += arr[i][i];
+
+        for(int i=0; i < matriz.length-1; i++) {
+            suma = 0;
+            for(int j=0; j < matriz[i].length; j++) {
+                suma += matriz[i][j];
+            }
+
+
         }
+
+
         return suma;
     }
 
@@ -47,16 +55,16 @@ public class Ej18 {
             }
         }
 
-        //La posición final es igual al total de todos los valores de la matriz
+        //La posición final es igual al total de la suma de todos los valores de la matriz
         for (int i = 0; i < tabla.length-1; i++) {
             for (int j = 0; j < tabla[i].length-1; j++) {
                 tabla[tabla.length-1][tabla[i].length-1] = total;
             }
         }
 
-        for (int i = 0; i < tabla.length; i++) {
-            for (int j = 0; j < tabla[i].length; j++) {
-                tabla[i][tabla[i].length-1] = sumarFila(tabla);
+        for (int i=0; i < tabla.length-1; i++) {
+            for (int j=0; j < tabla[i].length; j++) {
+                tabla[i][tabla.length] = sumaFila(tabla);
             }
         }
 
