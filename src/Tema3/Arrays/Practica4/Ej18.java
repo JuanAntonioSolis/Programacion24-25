@@ -62,11 +62,13 @@ public class Ej18 {
             }
         }
 
-        for (int i=0; i < tabla.length-1; i++) {
-            for (int j=0; j < tabla[i].length; j++) {
-                tabla[i][tabla.length] = sumaFila(tabla);
+        for (int i = 0; i < tabla.length-1; i++) {
+            for (int j = 0; j < tabla[i].length-1; j++) {
+
             }
         }
+
+
 
 
 
