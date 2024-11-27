@@ -24,21 +24,6 @@ public class Ej18 {
         }
     }
 
-    public static int sumaFila (int matriz[][]) {
-        int suma = 0;
-
-        for(int i=0; i < matriz.length-1; i++) {
-            suma = 0;
-            for(int j=0; j < matriz[i].length; j++) {
-                suma += matriz[i][j];
-            }
-
-
-        }
-
-
-        return suma;
-    }
 
 
     public static void main(String[] args) {
@@ -64,23 +49,22 @@ public class Ej18 {
 
         for (int i = 0; i < tabla.length-1; i++) {
             for (int j = 0; j < tabla[i].length-1; j++) {
-
+                suma += tabla[i][j];
             }
+            tabla[i][tabla[i].length-1] = suma;
+            suma = 0;
         }
 
 
-
-
-
-
+        for (int j = 0; j < tabla[0].length-1; j++) {
+            for (int i = 0; i < tabla.length-1; i++) {
+                suma += tabla[i][j];
+            }
+            tabla[tabla.length-1][j] = suma;
+            suma = 0;
+        }
 
         pintar(tabla);
-
-
-
-
-
-
 
 
     }
