@@ -22,12 +22,18 @@ public class act3 {
         System.out.println("Escribe que cadena quieres buscar: ");
         cadenaBuscar = sc.nextLine();
 
-        int posición = cadena.indexOf(cadenaBuscar);
+        int posicion = 0;
         int cont = 0;
 
-        while (posición > 0) {
-            cadena.indexOf(cadenaBuscar);
+        while (posicion >= 0) {
+            posicion = cadena.indexOf(cadenaBuscar, posicion);
+            if (posicion == -1)
+                break;
+            posicion++;
+            cont++;
         }
+
+        System.out.println("La cadena " + cadenaBuscar + " aparece " + (cont-1) + " veces");
 
 
 
