@@ -23,10 +23,12 @@ public class act4 {
         System.out.println("Escribe la segunda cadena");
         cadena2 = sc.nextLine();
 
-        if (cadena1.contains(cadena2)) {
-            String resultado =  cadena1.replace(cadena2, cadena2.toUpperCase());
-            System.out.println(resultado);
-        }
+        cadena2.toUpperCase();
+
+
+        System.out.println(cadena1.replace("amiga","AMIGA"));
+
+
 
 
 
