@@ -17,10 +17,29 @@ public class act6 {
         System.out.println("Escribe una cadena:");
         cadena = sc.nextLine();
 
-        String minus = cadena.toLowerCase();
+        cadena = cadena.toLowerCase();
 
-        String sinEspacios1 = minus.trim();
-        String sinEspacios = "";
+        while (cadena.indexOf(" ") != -1){
+            cadena.trim();
+        }
+
+        StringBuffer sb = new StringBuffer(cadena);
+
+        while (sb.indexOf(" ") != -1){
+            sb.deleteCharAt(sb.indexOf(" "));
+        }
+
+        sb.reverse();
+
+        if (cadena.equalsIgnoreCase(sb.toString())) {
+            System.out.println("Es un palíndromo");
+        } else {
+            System.out.println("No es un palíndromo");
+        }
+
+
+
+
 
 
 
