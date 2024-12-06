@@ -17,25 +17,48 @@ public class act6 {
         System.out.println("Escribe una cadena:");
         cadena = sc.nextLine();
 
-        cadena = cadena.toLowerCase();
+        String minuscula = cadena.toLowerCase();
 
-        while (cadena.indexOf(" ") != -1){
-            cadena.trim();
+        String noEspacio = minuscula.trim();
+        String sinEspacio = "";
+
+        for (int i = 0; i < noEspacio.length(); i++) {
+            String sub = noEspacio.substring(i, i+1);
+
+            if (!sub.isBlank()){
+                switch (sub) {
+                    case "á":
+                        sub = "a";
+                        break;
+                    case "é":
+                        sub = "e";
+                        break;
+                    case "í":
+                        sub = "i";
+                        break;
+                    case "ó":
+                        sub = "o";
+                        break;
+                    case "ú":
+                        sub = "u";
+                        break;
+                }
+                sinEspacio += sub;
+            }
         }
 
-        StringBuffer sb = new StringBuffer(cadena);
+        System.out.println(sinEspacio);
 
-        while (sb.indexOf(" ") != -1){
-            sb.deleteCharAt(sb.indexOf(" "));
-        }
+        StringBuffer sb = new StringBuffer(sinEspacio);
 
-        sb.reverse();
+        String inversa = sb.reverse().toString();
 
-        if (cadena.equalsIgnoreCase(sb.toString())) {
+        System.out.println(inversa);
+
+        if (sinEspacio.equals(inversa)){
             System.out.println("Es un palíndromo");
-        } else {
+        } else
             System.out.println("No es un palíndromo");
-        }
 
 
 
