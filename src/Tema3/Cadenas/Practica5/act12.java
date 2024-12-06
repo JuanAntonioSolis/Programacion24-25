@@ -12,7 +12,13 @@ public class act12 {
 
         StringBuffer sb = new StringBuffer();
 
-        //String partida[] = texto.split(text);
+
+        for (int i = 0; i < texto.length() / 2; i++) {
+            String mitad = texto.substring(i, i+1);
+
+            System.out.print(mitad);
+
+        }
 
 
 

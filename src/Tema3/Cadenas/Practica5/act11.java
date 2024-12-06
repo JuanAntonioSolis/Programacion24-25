@@ -10,14 +10,19 @@ public class act11 {
 
     public static void main(String[] args) {
 
-        String texto = "Bienvenidos al restaurante de mis sueños";
+        String texto;
+        Scanner sc = new Scanner(System.in);
+        texto = sc.nextLine();
 
-        StringBuffer sb = new StringBuffer(texto);
-        while (sb.indexOf(" ") != -1){
-            sb.deleteCharAt(sb.indexOf(" "));
+        for (int i = 0; i < texto.length(); i++) {
+            if (texto.charAt(i) == ' ') {
+                texto.trim();
+            }
         }
 
-        System.out.println(sb);
+
+
+
 
 
 

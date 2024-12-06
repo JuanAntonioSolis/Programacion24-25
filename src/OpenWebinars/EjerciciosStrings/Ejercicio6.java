@@ -21,14 +21,16 @@ public class Ejercicio6 {
         System.out.println("Escribe otra cadena:");
         cad2 = sc.nextLine();
 
+        char arr1[] = cad1.toCharArray();
+        char arr2[] = cad2.toCharArray();
 
-        Arrays.sort(cad1.toCharArray());
-        Arrays.sort(cad2.toCharArray());
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
 
-        System.out.println(cad1);
-        System.out.println(cad2);
+        System.out.println(arr1);
+        System.out.println(arr2);
 
-        if (cad1.equals(cad2)) {
+        if (Arrays.equals(arr1, arr2)) {
             System.out.println("Son anagramas");
         } else
             System.out.println("No son anagramas");
