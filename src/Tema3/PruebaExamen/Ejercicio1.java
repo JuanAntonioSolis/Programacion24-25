@@ -14,6 +14,7 @@ de la primera por los valores de la segunda.
 7. Salir
  */
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Ejercicio1 {
@@ -106,6 +107,12 @@ public class Ejercicio1 {
         //matriz[0][0], matriz[1][0], matriz[2][0] ...
     }
 
+    public static void ordenarFilas(int matriz[][]) {
+        for (int i = 0; i < matriz.length; i++) {
+            Arrays.sort(matriz[i]);
+        }
+    }
+
     public static int numero_aleatorio(int min , int max){
         return (int) (Math.random()*(max-min+1) +min);
     }
@@ -156,6 +163,8 @@ public class Ejercicio1 {
                             "a intercambiar(0-4):");
                     primeraFila = Integer.parseInt(sc.nextLine());
                     segundaFila = Integer.parseInt(sc.nextLine());
+                    pintar(matriz);
+                    System.out.println();
                     intercambiarFila(matriz, primeraFila, segundaFila);
 
                     pintar(matriz);
@@ -181,8 +190,21 @@ public class Ejercicio1 {
                     pintar(matriz);
                     trasponerMatriz(matriz);
                     pintar(matriz);
-
+                    break;
+                case 6:
+                    System.out.println("Has elegido la sexta opción, aquí tienes las filas ordenadas:");
+                    pintar(matriz);
+                    System.out.println();
+                    ordenarFilas(matriz);
+                    pintar(matriz);
+                    break;
+                case 7:
+                    System.out.println("Adiós, gracias por confiar en mi programa");
+                    break;
+                default:
+                    System.out.println("Error, no existe esa opción en el menú.");
             }
+            sc.nextLine();
 
         }
 
