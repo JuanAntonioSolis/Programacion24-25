@@ -15,7 +15,25 @@ public class algOrdenacion2 {
     }
 
     public static void burbuja(int arr[]) {
-        Arrays.sort(arr);
+        int aux;
+        boolean flag;
+
+        for (int i = arr.length; i>0; i--) {
+            flag = false;
+            for (int j = 0; j<i-1;j++){
+                if (arr[j] > arr[j+1]){
+                    flag = true;
+                    aux = arr[j+1];
+                    arr[j+1] = arr[j];
+                    arr[j] = aux;
+                }
+            }
+            if (!flag){
+                System.out.println("Se ha quedado por la " + i);
+                break;
+            }
+            pintar(arr);
+        }
     }
 
     public static void pintar(int numeros[]) {
