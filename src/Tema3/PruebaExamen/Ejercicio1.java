@@ -92,19 +92,15 @@ public class Ejercicio1 {
 
     }
 
-    public static void trasponerMatriz(int matriz[][]) {
-        int temp=0;
-        for(int k=0; k<matriz.length; k++) {
+    public static int[][] trasponerMatriz(int matriz[][]) {
+        int traspuesta[][] = new int[5][5];
 
-            for (int i = 0; i < matriz.length; i++) {
-                for (int j = 1; j < matriz[0].length; j++) {
-
-                }
+        for (int i = 0; i < matriz[0].length; i++){
+            for (int j = 0; j < matriz.length; j++) {
+                traspuesta[j][i] = matriz[i][j];
             }
-
         }
-
-        //matriz[0][0], matriz[1][0], matriz[2][0] ...
+        return traspuesta;
     }
 
     public static void ordenarFilas(int matriz[][]) {
@@ -188,6 +184,7 @@ public class Ejercicio1 {
                 case 5:
                     System.out.println("Has elegido la quinta opción, la matriz traspuesta:");
                     pintar(matriz);
+                    System.out.println();
                     trasponerMatriz(matriz);
                     pintar(matriz);
                     break;
