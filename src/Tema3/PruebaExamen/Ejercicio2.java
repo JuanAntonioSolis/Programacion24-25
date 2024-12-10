@@ -23,8 +23,64 @@ public class Ejercicio2 {
         return suma;
     }
 
+    public static boolean ronda() {
+
+        int tirada = tiradaDados();
+
+        System.out.println("Tirada " + tirada);
+        switch(tirada){
+            case 7,11:
+                System.out.println("Gana la partida");
+                return true;
+            case 2,3,12:
+                System.out.println("Pierde la partida");
+                return false;
+
+            default:
+                //Tirar los dados hasta que salga de nuevo el mismo num(gana) o el 7(pierde)
+                int tiradaRep = 0;
+
+                while (tiradaRep != 7 && tiradaRep != tirada) {
+                    tiradaRep = tiradaDados();
+                    System.out.println("Intermedias: " + tiradaRep);
+                }
+
+                if (tiradaRep == 7) {
+                    return false;
+                } else {
+                    return true;
+                }
+        }
+
+    }
+
+
+
 
     public static void main(String[] args) {
+
+        int p1 = 0;
+        int p2 = 0;
+        boolean ronda1 = false;
+        boolean ronda2 = false;
+
+        for (int i = 0; i<10; i++) {
+            ronda1 = ronda();
+            ronda2 = ronda();
+
+            if (ronda1 == true && ronda2 == false) {
+                p1++;
+            }
+
+            if (ronda1 == false && ronda2 == true) {
+                p2++;
+            }
+        }
+
+        System.out.println("El jugador 1 ha ganado " + p1 + " veces.");
+        System.out.println("El jugador 2 ha ganado " + p2 + " veces.");
+
+
 
 
 
