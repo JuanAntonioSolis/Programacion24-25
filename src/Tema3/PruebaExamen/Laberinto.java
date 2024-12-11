@@ -98,7 +98,6 @@ public class Laberinto {
         yBomba = numero_aleatorio(18,1);
 
         int direccion;
-        char aux;
         boolean salida = false;
         boolean bomba = false;
         boolean fuera = false;
