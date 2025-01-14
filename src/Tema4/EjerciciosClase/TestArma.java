@@ -6,7 +6,7 @@ public class TestArma {
 
         Arma arma1 = new Arma("Sable",60, Arma.TipoArma.ESPADA);
         Arma arma2 = new Arma("Maza",45, Arma.TipoArma.MARTILLO);
-        Personaje jugador = new Personaje("Luigi","Elfo","Hombre",100);
+        Personaje jugador = new Personaje("Luigi","Elfo","Hombre",100, Personaje.EligeArma.HACHA);
 
         arma1.golpear(jugador);
 

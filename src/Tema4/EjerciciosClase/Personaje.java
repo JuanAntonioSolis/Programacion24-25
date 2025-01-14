@@ -2,27 +2,20 @@ package Tema4.EjerciciosClase;
 
 public class Personaje {
 
-    enum EligeArma {}
+    enum EligeArma {ESPADA, MARTILLO, HACHA}
 
     private String nombre;
     private String clase;
     private String sexo;
     private int vida;
-    private Arma tipoArma;
+    private EligeArma arma;
 
-
-    public Personaje(String nombre, String clase, String sexo, int vida) {
+    public Personaje(String nombre, String clase, String sexo, int vida, EligeArma arma) {
         this.nombre = nombre;
         this.clase = clase;
         this.sexo = sexo;
         this.vida = vida;
-    }
-
-    public Personaje() {
-        this.nombre = "SinNombre";
-        this.clase = "Humano";
-        this.sexo = "nodefinido";
-        this.vida = 10;
+        this.arma = arma;
     }
 
     public String getNombre() {
@@ -57,14 +50,23 @@ public class Personaje {
         this.vida = vida;
     }
 
+    public EligeArma getArma() {
+        return arma;
+    }
+
+    public void setArma(EligeArma arma) {
+        this.arma = arma;
+    }
+
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Personaje{");
-        sb.append("nombre='").append(nombre).append('\'');
-        sb.append(", clase='").append(clase).append('\'');
-        sb.append(", sexo='").append(sexo).append('\'');
-        sb.append(", vida=").append(vida);
-        sb.append('}');
-        return sb.toString();
+        return "Personaje{" +
+                "nombre='" + nombre + '\'' +
+                ", clase='" + clase + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", vida=" + vida +
+                ", arma=" + arma +
+                '}';
     }
+
 }
