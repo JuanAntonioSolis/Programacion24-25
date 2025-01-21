@@ -4,10 +4,16 @@ public class TestIncidencia {
 
     public static void main(String[] args) {
 
-        Incidencia garaje = new Incidencia(02, Incidencia.Estado.ABIERTA,"Espejo salida","Instalar espejo");
-        Incidencia ascensor = new Incidencia(05, Incidencia.Estado.ENPROCESO,"Botones","Llamar empresa ascensor");
+        Incidencia puerta = new Incidencia(010,"No abre");
+        Incidencia garaje = new Incidencia(120,"Espejo puerta");
+        Incidencia ascensor = new Incidencia(738,"Botones no van");
+        Incidencia goteras = new Incidencia(472,"Goteras en el pasillo");
+        Incidencia barandillas = new Incidencia(313,"Barandillas para cambiar");
 
+        System.out.println(Incidencia.getPendientes());
 
+        ascensor.resuelve();
 
+        System.out.println(Incidencia.getPendientes());
     }
 }

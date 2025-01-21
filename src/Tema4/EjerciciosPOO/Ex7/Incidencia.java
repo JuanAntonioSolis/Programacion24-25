@@ -11,11 +11,11 @@ public class Incidencia {
 
     private static Integer pendientes = 0;
 
-    public Incidencia(Integer codigo, Estado estado, String problema, String solucion) {
+    public Incidencia(Integer codigo, String problema) {
         this.codigo = codigo;
-        this.estado = estado;
+        this.estado = Estado.ABIERTA;
         this.problema = problema;
-        this.solucion = solucion;
+        this.solucion = "";
         Incidencia.pendientes++;
     }
 
@@ -66,9 +66,9 @@ public class Incidencia {
         return pendientes;
     }
 
-    public static void resuelve(Incidencia incidencia) {
-        if (incidencia.getEstado() == Estado.RESUELTA) {
-            Incidencia.pendientes--;
-        }
+    public void resuelve() {
+        this.estado = Estado.RESUELTA;
+        Incidencia.pendientes--;
+
     }
 }
