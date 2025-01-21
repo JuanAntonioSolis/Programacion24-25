@@ -8,7 +8,7 @@ public class TestSteamJuego {
         SteamJuego automobilista = new SteamJuego("Automobilista 2","Simulador",2000,500,30,30);
         SteamJuego fifa = new SteamJuego("Fifa 18","Futbol",45000,700,60,7);
 
-        Integer masVentas = 100;
+        /*Integer masVentas = 100;
 
         if (callofduty.getPuestoMasVendidos() < masVentas){
             masVentas = callofduty.getPuestoMasVendidos();
@@ -21,5 +21,27 @@ public class TestSteamJuego {
         }
 
         System.out.println(masVentas);
+
+         */
+
+        callofduty.jugadoresDia(70567);
+        automobilista.jugadoresDia(6980);
+        fifa.jugadoresDia(34572);
+
+        System.out.println(callofduty.getMediaJugadoresDiarios());
+        System.out.println(automobilista.getMediaJugadoresDiarios());
+        System.out.println(fifa.getMediaJugadoresDiarios());
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
