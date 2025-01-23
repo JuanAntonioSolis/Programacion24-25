@@ -10,5 +10,9 @@ public class TestJuego {
         player.equipar(bow);
 
         System.out.println(player);
+
+        player.tomarPocion(10000);
+
+        System.out.println(player);
     }
 }

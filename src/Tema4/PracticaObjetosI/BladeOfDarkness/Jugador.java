@@ -54,7 +54,7 @@ public class Jugador {
 
     //Metodo que añade vida conforme indique puntosS.
     public void tomarPocion(int puntosS){
-        while (this.salud <= 10000){
+        while (this.salud >= 10000){
             this.salud += puntosS;
         }
     }
