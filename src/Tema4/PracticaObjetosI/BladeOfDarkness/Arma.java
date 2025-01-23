@@ -7,18 +7,24 @@ public class Arma {
     private String nombre;
     private Tipo tipo;
     private Integer puntosD;
-    private Boolean manos;
+    private Boolean dosManos;
 
-    //Constructor completo
-    public Arma(String nombre, Tipo tipo, Integer puntosD, Boolean manos) {
+    public Arma(String nombre, Tipo tipo, Integer puntosD, Boolean dosManos) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.puntosD = puntosD;
-        this.manos = manos;
+        this.dosManos = dosManos;
     }
 
-    //Constructor por defecto...
-    public Arma() {
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Arma{");
+        sb.append("nombre='").append(nombre).append('\'');
+        sb.append(", tipo=").append(tipo);
+        sb.append(", puntosD=").append(puntosD);
+        sb.append(", dosManos=").append(dosManos);
+        sb.append('}');
+        return sb.toString();
     }
 
     public String getNombre() {
@@ -45,23 +51,11 @@ public class Arma {
         this.puntosD = puntosD;
     }
 
-    public Boolean getManos() {
-        return manos;
+    public Boolean getDosManos() {
+        return dosManos;
     }
 
-    public void setManos(Boolean manos) {
-        this.manos = manos;
+    public void setDosManos(Boolean dosManos) {
+        this.dosManos = dosManos;
     }
-
-    @Override
-    public String toString() {
-        return "Arma{" +
-                "nombre='" + nombre + '\'' +
-                ", tipo=" + tipo +
-                ", puntosD=" + puntosD +
-                ", manos=" + manos +
-                '}';
-    }
-
-
 }

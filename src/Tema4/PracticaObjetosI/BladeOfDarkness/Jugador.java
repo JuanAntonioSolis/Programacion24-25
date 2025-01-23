@@ -24,12 +24,79 @@ public class Jugador {
     }
 
     //Metodo para subir nivel de 1 en 1. Nivel max, 10. Cuando sube de nivel, sube la vida 2.5^nivel.
-    public void subirNivel(Jugador jugador) {
+    public void subirNivel() {
         while (this.nivel <= 10){
             this.nivel += 1;
             this.salud += (Math.pow(2.5,this.nivel));
         }
     }
+
+    //Metodo para equipar armas.
+    public Boolean equipar(Arma arma){
+        if (arma.getDosManos()){
+            if (this.armaDerecha == null && this.armaIzquierda == null){
+                this.armaDerecha = arma;
+                this.armaIzquierda = arma;
+                return true;
+            } else {
+                return false;
+            }
+        } else
+            if (this.armaDerecha == null){
+                this.armaDerecha = arma;
+                return true;
+            } else if (this.armaIzquierda == null){
+                this.armaIzquierda = arma;
+                return true;
+            } else
+                return false;
+    }
+
+    //Metodo que añade vida conforme indique puntosS.
+    public void tomarPocion(int puntosS){
+        while (this.salud <= 10000){
+            this.salud += puntosS;
+        }
+    }
+
+    //Metodo que reduce vida del jugador.
+    public Boolean reducirVida(int puntosD){
+
+        this.salud -= puntosD;
+
+        if (this.salud != 0){
+            return false;
+        } else if (this.salud == 0 || this.salud < 0){
+            this.setSalud(0.0);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void golpear(Monstruo monstruo){
+        if (this.getArmaDerecha() != null){
+            monstruo.reducirVida(this.getArmaDerecha().getPuntosD());
+            if (! this.getArmaDerecha().getDosManos()){
+                if (this.getArmaIzquierda() != null){
+                    monstruo.reducirVida(this.getArmaIzquierda().getPuntosD());
+                }
+            }
+        }
+
+        while (this.experiencia <= 1000) {
+            if (monstruo.getSalud() <= 0){
+                this.experiencia += (monstruo.getNivel() * 10);
+            }
+
+            if (this.getExperiencia() % 100 == 0 ){
+                this.nivel++;
+            }
+
+        }
+    }
+
+
 
     public String getNombre() {
         return nombre;
@@ -85,5 +152,19 @@ public class Jugador {
 
     public void setArmaIzquierda(Arma armaIzquierda) {
         this.armaIzquierda = armaIzquierda;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Jugador{");
+        sb.append("nombre='").append(nombre).append('\'');
+        sb.append(", clase=").append(clase);
+        sb.append(", nivel=").append(nivel);
+        sb.append(", experiencia=").append(experiencia);
+        sb.append(", salud=").append(salud);
+        sb.append(", armaDerecha=").append(armaDerecha);
+        sb.append(", armaIzquierda=").append(armaIzquierda);
+        sb.append('}');
+        return sb.toString();
     }
 }
