@@ -11,7 +11,7 @@ public class TestJuego {
 
         System.out.println(player);
 
-        player.tomarPocion(10000);
+        player.tomarPocion(9901);
 
         System.out.println(player);
     }
