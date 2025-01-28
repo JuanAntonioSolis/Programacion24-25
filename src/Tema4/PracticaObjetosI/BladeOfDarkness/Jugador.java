@@ -12,7 +12,12 @@ public class Jugador {
     private Arma armaDerecha;
     private Arma armaIzquierda;
 
-    //Constructor completo, Nivel por defecto a 1, Exp por defecto a 0, Salud por defecto a 200. Armas null.
+    /**
+     * Constructor completo, Nivel por defecto a 1, Exp por defecto a 0, Salud por defecto a 200.
+     * Armas null.
+     * @param nombre
+     * @param clase
+     */
     public Jugador(String nombre, Clase clase) {
         this.nombre = nombre;
         this.clase = clase;
@@ -23,15 +28,24 @@ public class Jugador {
         this.armaIzquierda = null;
     }
 
-    //Metodo para subir nivel de 1 en 1. Nivel max, 10. Cuando sube de nivel, sube la vida 2.5^nivel.
+    /**
+     * Metodo para subir nivel de 1 en 1. Nivel max, 10. Cuando sube de nivel, sube la vida 2.5^nivel.
+     */
     public void subirNivel() {
-        while (this.nivel <= 10){
-            this.nivel += 1;
+        if (this.nivel + 1 >= 10){
+            this.nivel = 10;
             this.salud += (Math.pow(2.5,this.nivel));
+        } else {
+            this.nivel += 1;
+            this.salud += (Math.pow(2.5, this.nivel));
         }
     }
 
-    //Metodo para equipar armas.
+    /**
+     * Metodo para equipar armas.
+     * @param arma
+     * @return
+     */
     public Boolean equipar(Arma arma){
         if (arma.getDosManos()){
             if (this.armaDerecha == null && this.armaIzquierda == null){
@@ -52,15 +66,22 @@ public class Jugador {
                 return false;
     }
 
-    //Metodo que añade vida conforme indique puntosS.
+    /**
+     * Metodo que añade vida conforme indique puntosS.
+     * @param puntosS
+     */
     public void tomarPocion(int puntosS){
-        while (this.salud <= 10000){
+        if (this.salud + puntosS >= 10000){
+            this.salud = 10000.0;
+        } else
             this.salud += puntosS;
-        }
-
     }
 
-    //Metodo que reduce vida del jugador.
+    /**
+     * Metodo que reduce vida del jugador.
+     * @param puntosD
+     * @return
+     */
     public Boolean reducirVida(int puntosD){
 
         this.salud -= puntosD;
@@ -75,6 +96,12 @@ public class Jugador {
         return false;
     }
 
+    /**
+     * Metodo que resta vida al monstruo, conforme los puntosD de las armas.
+     * Si del golpe se muere el monstruo, sube el nivel del jugador (10 * nivelMonstruo)
+     * Por cada centena que suba la experiencia sube el nivel
+     * @param monstruo
+     */
     public void golpear(Monstruo monstruo){
         if (this.getArmaDerecha() != null){
             monstruo.reducirVida(this.getArmaDerecha().getPuntosD());
@@ -85,13 +112,16 @@ public class Jugador {
             }
         }
 
-        while (this.experiencia <= 1000) {
-            if (monstruo.getSalud() <= 0){
-                this.experiencia += (monstruo.getNivel() * 10);
-            }
+        if (monstruo.getSalud() <= 0){
 
-            if (this.getExperiencia() % 100 == 0 ){
-                this.nivel++;
+
+            if (this.experiencia + (monstruo.getNivel() * 10) >= 1000){
+                this.experiencia = 1000;
+            } else{
+                this.experiencia += (monstruo.getNivel() * 10);
+                if (this.getExperiencia() % 100 == 0 ){
+                    this.nivel++;
+                }
             }
 
         }

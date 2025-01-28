@@ -20,9 +20,13 @@ public class Monstruo {
 
     //Metodo para subir el nivel del monstruo.
     public void subirNivel(){
-        while (this.nivel <= 10){
+
+        if (this.nivel + 1 >= 10){
+            this.nivel = 10;
+            this.salud += (Math.pow(2.5,this.nivel));
+        } else {
             this.nivel += 1;
-            this.salud += (Math.pow(2,this.nivel));
+            this.salud += (Math.pow(2.5, this.nivel));
         }
     }
 
@@ -42,7 +46,7 @@ public class Monstruo {
 
     //Metodo que golpea al jugador y le quita tanta vida como valor de puntosD del monstruo.
     public void golpear(Jugador jugador){
-        jugador.setSalud(jugador.getSalud() - this.puntosD);
+        jugador.reducirVida(this.puntosD);
     }
 
     @Override
