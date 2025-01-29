@@ -62,8 +62,11 @@ public class Mago {
 
     /**
      * Metodo que lanza hechizos:
-     * Consume energia y usa el hechizo si está en la lista
-     * Si el hechizo es suficiente para la prueba devuelve true. Sino, pierde energia y devuelve false?
+     * Consume energia y usa el hechizo si está en la lista. Primero busca que este el hechizo.
+     * Si no esta false, si está, se comprueba si es efectivo contra la prueba. Si no es efectivo devuelve false,
+     *
+     * Si el hechizo es suficiente para la prueba devuelve true y suma la experiencia del mago la de la prueba(recompensa).
+     * Sino, pierde energia el mago(recompensa) y devuelve false
      *
      * @param nombreHechizo
      * @param prueba

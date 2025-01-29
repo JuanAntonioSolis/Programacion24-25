@@ -1,4 +1,4 @@
-package Tema4.EjerciciosClase;
+package Tema4.EjerciciosClase.EjerciciosSueltosPrincipio;
 
 public class Arma {
 
