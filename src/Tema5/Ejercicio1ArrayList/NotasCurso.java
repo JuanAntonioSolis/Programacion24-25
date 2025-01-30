@@ -1,4 +1,4 @@
-package Tema4.Ejercicio1ArrayList;
+package Tema5.Ejercicio1ArrayList;
 
 import java.util.Objects;
 
@@ -34,9 +34,6 @@ public class NotasCurso {
         final StringBuffer sb = new StringBuffer("NotasCurso{");
         sb.append("materia='").append(materia).append('\'');
         sb.append(", curso=").append(curso);
-        sb.append(", nota1Ev=").append(nota1Ev);
-        sb.append(", nota2Ev=").append(nota2Ev);
-        sb.append(", nota3Ev=").append(nota3Ev);
         sb.append(", notaFinal=").append(notaFinal);
         sb.append('}');
         return sb.toString();

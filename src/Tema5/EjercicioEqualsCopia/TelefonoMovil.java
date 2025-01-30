@@ -1,4 +1,4 @@
-package Tema4.EjerciciosClase.EjercicioEqualsCopia;
+package Tema5.EjercicioEqualsCopia;
 
 import java.util.Objects;
 
