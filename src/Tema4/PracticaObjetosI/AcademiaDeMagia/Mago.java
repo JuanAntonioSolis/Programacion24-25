@@ -62,7 +62,8 @@ public class Mago {
 
     /**
      * Metodo que lanza hechizos:
-     * Consume energia y usa el hechizo si está en la lista. Primero busca que este el hechizo.
+     * Consume energia y usa el hechizo si está en la lista.
+     * Primero busca que este el hechizo.
      * Si no esta false, si está, se comprueba si es efectivo contra la prueba. Si no es efectivo devuelve false,
      *
      * Si el hechizo es suficiente para la prueba devuelve true y suma la experiencia del mago la de la prueba(recompensa).
@@ -73,7 +74,6 @@ public class Mago {
      * @return
      */
     public Boolean lanzarHechizo(String nombreHechizo, Prueba prueba){
-
 
     return null;
     }
