@@ -73,28 +73,27 @@ public class Mago {
      * @param prueba
      * @return
      */
-    public Boolean lanzarHechizo(String nombreHechizo, Prueba prueba){
+    public void lanzarHechizo(String nombreHechizo, Prueba prueba){
 
         Hechizo eHechizo = this.buscar(nombreHechizo);
 
         if (eHechizo == null){
             System.out.println("Hechizo no encontrado");
-            return false;
+
         } else {
             if (this.energia < eHechizo.getEnergiaNecesaria()){
                 System.out.println("El mago no tiene energía suficiente para el conjuro");
-                return false;
             } else {
                 if (eHechizo.esEfectivo(prueba)){
                     this.recargarEnergia(prueba.getRecompensa());
-                    return true;
+                    System.out.println("El hechizo fue efectivo, has superado la prueba. No pierdes energia");
                 } else{
                     this.setEnergia(this.energia - prueba.getRecompensa());
+                    System.out.println("El hechizo no fue efectivo, no has superado la prueba. No recuperas energía");
                 }
             }
         }
 
-    return null;
     }
 
 
