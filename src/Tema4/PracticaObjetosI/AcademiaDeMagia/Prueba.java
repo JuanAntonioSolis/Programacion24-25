@@ -46,7 +46,7 @@ public class Prueba {
     }
 
     public Boolean resolver(Hechizo hechizo){
-        if (this.nivelDificultad <= hechizo.getEnergiaNecesaria()){
+        if (this.nivelDificultad <= hechizo.getPotencia()){
             return true;
         } else
             return false;

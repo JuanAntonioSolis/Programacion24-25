@@ -75,13 +75,32 @@ public class Mago {
      */
     public Boolean lanzarHechizo(String nombreHechizo, Prueba prueba){
 
+        Hechizo eHechizo = this.buscar(nombreHechizo);
+
+        if (eHechizo == null){
+            System.out.println("Hechizo no encontrado");
+            return false;
+        } else {
+            if (this.energia < eHechizo.getEnergiaNecesaria()){
+                System.out.println("El mago no tiene energía suficiente para el conjuro");
+                return false;
+            } else {
+                if (eHechizo.esEfectivo(prueba)){
+                    this.recargarEnergia(prueba.getRecompensa());
+                    return true;
+                } else{
+                    this.setEnergia(this.energia - prueba.getRecompensa());
+                }
+            }
+        }
+
     return null;
     }
 
 
 
     public Hechizo buscar(String nombreHechizo){
-        for (Hechizo hechizo : hechizos){
+        for (Hechizo hechizo : this.hechizos){
             if (hechizo.getNombre().equalsIgnoreCase(nombreHechizo)){
                 return hechizo;
             }
