@@ -7,7 +7,7 @@ public class Libreria {
     private ArrayList<Libro> libros;
 
     public Libreria() {
-        this.libros = new ArrayList<>();
+        this.libros = new ArrayList<>(100);
     }
 
     public void adquirir(Libro libro, Double precioCompra) {
