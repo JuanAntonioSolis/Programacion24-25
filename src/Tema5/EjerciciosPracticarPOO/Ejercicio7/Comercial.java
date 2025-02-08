@@ -24,9 +24,13 @@ public class Comercial extends Empleado{
                 ", nombre='" + nombre + '\'' +
                 ", edad=" + edad +
                 ", salario=" + salario +
-                ", plus=" + plus +
                 '}';
     }
 
-
+    @Override
+    public void addPlus() {
+        if (this.edad > 30 && this.comision>200){
+            this.salario += plus;
+        }
+    }
 }

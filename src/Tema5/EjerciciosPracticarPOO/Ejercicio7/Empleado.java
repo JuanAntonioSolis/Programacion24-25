@@ -49,8 +49,11 @@ public class Empleado {
                 "nombre='" + nombre + '\'' +
                 ", edad=" + edad +
                 ", salario=" + salario +
-                ", plus=" + plus +
                 '}';
+    }
+
+    public void addPlus(){
+
     }
 
 
