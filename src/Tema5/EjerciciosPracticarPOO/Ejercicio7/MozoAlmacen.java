@@ -28,5 +28,20 @@ public class MozoAlmacen extends Operario{
                 '}';
     }
 
-
+    /**
+     * Se le suma el Plus si:
+     * Peligrosidad3 o Peligrosidad2 Y Edad > 30 o Peligrosidad 1 Y Edad < 30
+     * Y si hace horas extra recible el plus x2
+     *
+     */
+    @Override
+    public void addPlus() {
+        if (this.peligrosidad == 3 || (this.peligrosidad == 2 && this.edad > 30) ||
+                (this.peligrosidad == 1 && this.edad <30)) {
+            this.salario += plus;
+            if (getHaceHorasExtra()){
+                this.salario += plus;
+            }
+        }
+    }
 }

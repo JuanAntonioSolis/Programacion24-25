@@ -6,26 +6,15 @@ public class TestEmpleado {
 
         Empleado em1 = new Comercial("Juan",22,1700.00,350.00);
         Empleado em2 = new Comercial("Mario",34,1800.00,450.00);
-        //Empleado em3 = new Repartidor("Pedro",29,600.00,"Zona3");
-        //Empleado em4 = new Repartidor("Samuel",23,800.00,"Zona3");
+        Empleado em3 = new Repartidor("Sandra",23,1100.00,Boolean.TRUE,"Zona3");
+        Empleado em4 = new MozoAlmacen("Pedro",29,1300.00,true,3);
 
-        System.out.println(em2);
 
-        em2.addPlus();
+        em4.addPlus();
 
-        System.out.println(em2);
+        System.out.println(em4);
 
-        em1.addPlus();
 
-        System.out.println(em1);
-
-        //em3.addPlus();
-
-       // System.out.println(em3);
-
-        //em4.addPlus();
-
-       // System.out.println(em4);
 
 
 

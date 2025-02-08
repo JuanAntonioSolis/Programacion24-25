@@ -32,7 +32,13 @@ public class Repartidor extends Operario{
         if (this.edad < 25 && this.zona.equalsIgnoreCase("Zona3")){
             this.salario += plus;
         }
+
+        if (getHaceHorasExtra()){
+            this.salario += plus * 2;
+        }
     }
+
+
 
 
 }
