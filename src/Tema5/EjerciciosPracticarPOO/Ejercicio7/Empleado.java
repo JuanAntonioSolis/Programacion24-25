@@ -1,6 +1,6 @@
 package Tema5.EjerciciosPracticarPOO.Ejercicio7;
 
-public class Empleado {
+public abstract class Empleado {
 
     protected String nombre;
     protected Integer edad;
