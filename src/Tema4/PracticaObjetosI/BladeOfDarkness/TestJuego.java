@@ -4,6 +4,7 @@ public class TestJuego {
 
     public static void main(String[] args) {
 
+        /*
         Jugador player = new Jugador("Raton",Jugador.Clase.MAGO);
         Arma bow = new Arma("MagicBow",Arma.Tipo.ARCO,85,false);
         Monstruo monstruo1 = new Monstruo("Gigante",Monstruo.Clase.FANTASMA,50);
@@ -78,6 +79,8 @@ public class TestJuego {
 
         //Monstruo 1 golpea a player, debe de restarle 50 puntos a la salud
         //monstruo1.golpear(player);
+
+         */
 
 
 
