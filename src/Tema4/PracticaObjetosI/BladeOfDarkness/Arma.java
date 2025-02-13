@@ -5,7 +5,7 @@ public class Arma {
     enum Tipo{ ESPADA, HACHA, BASTON, ARCO };
 
     private String nombre;
-    private Tipo tipo;
+    public Tipo tipo;
     private Integer puntosD;
     private Boolean dosManos;
 
