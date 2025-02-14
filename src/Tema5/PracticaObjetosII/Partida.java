@@ -40,13 +40,12 @@ public class Partida {
                monsters.remove(monstruo);
                return true;
            }
-           if (!monsters.isEmpty()){
-               return true;
-           } else
-               return false;
-
        }
-         return false;
+
+       if (monsters.isEmpty()){
+           return false;
+       } else
+           return true;
 
    }
 }
