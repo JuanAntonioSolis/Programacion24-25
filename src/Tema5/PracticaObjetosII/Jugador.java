@@ -1,26 +1,22 @@
 package Tema5.PracticaObjetosII;
 
-import Tema4.PracticaObjetosI.BladeOfDarkness.Arma;
-
 public class Jugador extends Personaje {
 
-    enum Clase { MAGO, BRUJO, BARBARO, CABALLERO };
+    enum Clase {MAGO, BRUJO, BARBARO, CABALLERO};
 
+    private Clase clase;
     private Integer experiencia;
     private Arma armaDerecha;
     private Arma armaIzquierda;
-    private Clase clase;
 
-    public Jugador(String nombre, Integer nivel, Double salud, Integer experiencia, Double salud1, Arma armaDerecha, Arma armaIzquierda) {
+
+    public Jugador(String nombre, Integer nivel, Double salud, Clase clase,
+                   Integer experiencia, Arma armaDerecha, Arma armaIzquierda) {
         super(nombre, nivel, salud);
+        this.clase = clase;
         this.experiencia = experiencia;
-        this.salud = salud1;
         this.armaDerecha = armaDerecha;
         this.armaIzquierda = armaIzquierda;
-    }
-
-    public Integer getExperiencia() {
-        return experiencia;
     }
 
     public Clase getClase() {
@@ -29,6 +25,10 @@ public class Jugador extends Personaje {
 
     public void setClase(Clase clase) {
         this.clase = clase;
+    }
+
+    public Integer getExperiencia() {
+        return experiencia;
     }
 
     public void setExperiencia(Integer experiencia) {
@@ -54,8 +54,8 @@ public class Jugador extends Personaje {
     @Override
     public String toString() {
         return "Jugador{" +
-                "experiencia=" + experiencia +
-                ", salud=" + salud +
+                "clase=" + clase +
+                ", experiencia=" + experiencia +
                 ", armaDerecha=" + armaDerecha +
                 ", armaIzquierda=" + armaIzquierda +
                 ", nombre='" + nombre + '\'' +
@@ -64,16 +64,14 @@ public class Jugador extends Personaje {
                 '}';
     }
 
-
+    @Override
+    public void subirNivel() {
+        super.subirNivel();
+    }
 
     @Override
     public Boolean reducirVida(int puntosD) {
         return super.reducirVida(puntosD);
-    }
-
-    @Override
-    public void subirNivel() {
-        super.subirNivel();
     }
 
     @Override
@@ -100,42 +98,35 @@ public class Jugador extends Personaje {
             }
 
         }
+
     }
 
-    /**
-     * Metodo para equipar armas.
-     * @param arma
-     * @return
-     */
-    public Boolean equipar(Arma arma){
-        if (arma.getDosManos()){
+    public void tomarPocion(int puntosS){
+        if (this.salud + puntosS >= 10000){
+            this.salud += 10000;
+        } else {
+            this.salud += puntosS;
+        }
+    }
+
+    public Boolean equipar(Arma weapon){
+        if (weapon.getDosManos()){
             if (this.armaDerecha == null && this.armaIzquierda == null){
-                this.armaDerecha = arma;
-                this.armaIzquierda = arma;
+                this.armaDerecha = weapon;
+                this.armaIzquierda = weapon;
                 return true;
             } else {
                 return false;
             }
-        } else
-            if (this.armaDerecha == null){
-                this.armaDerecha = arma;
-                return true;
-            } else if (this.armaIzquierda == null){
-                this.armaIzquierda = arma;
-                return true;
-            } else
-                return false;
-    }
+        } else if (this.armaDerecha == null){
+            this.armaDerecha = weapon;
+            return true;
+        } else if (this.armaIzquierda == null) {
+            this.armaIzquierda = weapon;
+            return true;
 
-    /**
-     * Metodo que añade vida conforme indique puntosS.
-     * @param puntosS
-     */
-    public void tomarPocion(int puntosS){
-        if (this.salud + puntosS >= 10000){
-            this.salud = 10000.0;
         } else
-            this.salud += puntosS;
+            return false;
     }
 
 
