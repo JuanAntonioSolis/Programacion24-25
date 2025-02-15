@@ -22,6 +22,13 @@ public class TestJuego {
 
         System.out.println(pt1.getMonsters());
 
+        for (int i = 1; i <= 30; i++){
+            System.out.println("El jugador golpea: ");
+            pt1.turnoJugador();
+
+
+        }
+
 
 
 
