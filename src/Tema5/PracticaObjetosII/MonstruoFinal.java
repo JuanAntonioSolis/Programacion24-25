@@ -13,6 +13,33 @@ public class MonstruoFinal extends Monstruo{
         this.usosGolpeEspecial = 3;
     }
 
+    public Integer getGolpeEspecial() {
+        return golpeEspecial;
+    }
+
+    public void setGolpeEspecial(Integer golpeEspecial) {
+        this.golpeEspecial = golpeEspecial;
+    }
+
+    public Integer getUsosGolpeEspecial() {
+        return usosGolpeEspecial;
+    }
+
+    public void setUsosGolpeEspecial(Integer usosGolpeEspecial) {
+        this.usosGolpeEspecial = usosGolpeEspecial;
+    }
+
+    @Override
+    public String toString() {
+        return "MonstruoFinal{" +
+                "golpeEspecial=" + golpeEspecial +
+                ", usosGolpeEspecial=" + usosGolpeEspecial +
+                ", nombre='" + nombre + '\'' +
+                ", nivel=" + nivel +
+                ", salud=" + salud +
+                '}';
+    }
+
     /**
      * Metodo golpear pero con el golpeEspecial de este tipo de monstruo
      * Cada vez que se accede a este golpe, se resta uno en la cantidad de golpes dados.

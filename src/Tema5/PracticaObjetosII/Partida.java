@@ -17,6 +17,26 @@ public class Partida {
         iniciarPartida();
    }
 
+    public Jugador getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Jugador player) {
+        this.player = player;
+    }
+
+    public ArrayList<Monstruo> getMonsters() {
+        return monsters;
+    }
+
+    @Override
+    public String toString() {
+        return "Partida{" +
+                "player=" + player +
+                ", monsters=" + monsters +
+                '}';
+    }
+
     /**
      * Se le llama en el constructor
      * Añade a la lista de monstruos 100 monstruos iguales
@@ -24,7 +44,7 @@ public class Partida {
      */
    public void iniciarPartida(){
 
-       for (int i=1; i<=100; i++){
+       for (int i=1; i<=10; i++){
             monsters.add(new Monstruo("Ghost",30,150.0, Monstruo.Clase.FANTASMA,60));
        }
 
@@ -32,20 +52,40 @@ public class Partida {
 
    }
 
+   public void agregarMonsruos(Monstruo mon){
+       this.monsters.add(mon);
+   }
+
    public Boolean turnoJugador(){
-       for (Monstruo monstruo: monsters){
-           player.golpear(monstruo);
+
+       player.golpear(this.monsters.getFirst());
+
+       if (this.monsters.getFirst().getSalud() <= 0 ){
+           System.out.println("El jugador ha acabado con el monstruo " + this.monsters.getFirst().getNombre());
+           this.monsters.remove(this.monsters.getFirst());
            return true;
-           if (monstruo.getSalud() <= 0){
-               monsters.remove(monstruo);
-               return true;
-           }
        }
 
-       if (monsters.isEmpty()){
-           return false;
-       } else
+       if (this.monsters.isEmpty()){
+           System.out.println("Termina la partida, el jugador a acabado con todos los monstruos");
            return true;
+       }
 
+
+       return false;
+   }
+
+   public boolean turnoEnemigo(){
+
+       this.monsters.getFirst().golpear(player);
+
+       if (this.player.getSalud() <= 0 ){
+           System.out.println("El jugador ha muerto, pierde la partida.");
+           return true;
+       }
+
+
+
+       return false;
    }
 }
