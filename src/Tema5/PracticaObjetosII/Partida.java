@@ -58,12 +58,11 @@ public class Partida {
 
    public Boolean turnoJugador(){
 
-       player.golpear(this.monsters.getFirst());
+       player.golpear(this.monsters.get(0));
 
        if (this.monsters.getFirst().getSalud() <= 0 ){
            System.out.println("El jugador ha acabado con el monstruo " + this.monsters.getFirst().getNombre());
-           this.monsters.remove(this.monsters.getFirst());
-           return true;
+           this.monsters.remove(this.monsters.get(0));
        }
 
        if (this.monsters.isEmpty()){

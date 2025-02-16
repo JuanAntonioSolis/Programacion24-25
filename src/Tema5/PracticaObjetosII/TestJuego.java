@@ -4,6 +4,8 @@ public class TestJuego {
 
     public static void main(String[] args) {
 
+        int contadorTurnos = 0;
+
         Jugador pl1 = new Jugador("Aprendiz",1,200.0, Jugador.Clase.CABALLERO,
                 100,null,null);
 
@@ -17,17 +19,34 @@ public class TestJuego {
         Partida pt1 = new Partida(pl1);
 
         System.out.println(pl1);
+        System.out.println();
 
         pt1.agregarMonsruos(mf1);
 
         System.out.println(pt1.getMonsters());
 
-        for (int i = 1; i <= 30; i++){
-            System.out.println("El jugador golpea: ");
+
+
+
+
+        while ((pt1.turnoJugador() != true || pt1.turnoEnemigo() != true) && contadorTurnos != 5){
+            contadorTurnos++;
+            System.out.println("Ronda " + contadorTurnos);
+            System.out.println("El jugador golpea al monstruo: ");
+            System.out.println(pt1.getMonsters().get(0));
             pt1.turnoJugador();
+            System.out.println(pt1.getMonsters().get(0));
 
+            System.out.println();
 
+            System.out.println("El monstruo golpea al jugador: ");
+            System.out.println("Vida del jugador antes del golpe: " + pl1.getSalud());
+            pt1.turnoEnemigo();
+            System.out.println("Vida del jugador golpeado: " + pl1.getSalud());
+            System.out.println();
         }
+
+
 
 
 
