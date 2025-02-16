@@ -1,4 +1,4 @@
-package Tema5.PracticaObjetosII;
+package Tema5.PracticaObjetosII.Ejercicio1;
 
 
 
@@ -44,9 +44,12 @@ public class Partida {
      */
    public void iniciarPartida(){
 
+       /*
        for (int i=1; i<=10; i++){
             monsters.add(new Monstruo("Ghost",30,150.0, Monstruo.Clase.FANTASMA,60));
        }
+
+        */
 
        player.equipar(new Arma("Arquillo", Arma.Tipo.ARCO,40, true));
 
@@ -58,21 +61,26 @@ public class Partida {
 
    public Boolean turnoJugador(){
 
-       player.golpear(this.monsters.get(0));
+       player.golpear(this.monsters.getFirst());
 
        if (this.monsters.getFirst().getSalud() <= 0 ){
            System.out.println("El jugador ha acabado con el monstruo " + this.monsters.getFirst().getNombre());
-           this.monsters.remove(this.monsters.get(0));
+           this.monsters.remove(this.monsters.getFirst());
+           return true;
        }
 
        if (this.monsters.isEmpty()){
            System.out.println("Termina la partida, el jugador a acabado con todos los monstruos");
+           return false;
+       } else {
            return true;
        }
 
 
-       return false;
+
    }
+
+
 
    public boolean turnoEnemigo(){
 
@@ -80,11 +88,12 @@ public class Partida {
 
        if (this.player.getSalud() <= 0 ){
            System.out.println("El jugador ha muerto, pierde la partida.");
+           return false;
+       } else
            return true;
-       }
 
 
 
-       return false;
+
    }
 }

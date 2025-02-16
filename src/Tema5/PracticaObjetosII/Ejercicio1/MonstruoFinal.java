@@ -1,4 +1,4 @@
-package Tema5.PracticaObjetosII;
+package Tema5.PracticaObjetosII.Ejercicio1;
 
 public class MonstruoFinal extends Monstruo{
 
