@@ -4,11 +4,11 @@ public class Monstruo extends Personaje {
 
     enum Clase { GOBLIN, TROLL, SKRALL, DEMONIO, FANTASMA };
 
-    private Clase clase;
-    private Integer puntosD;
+    protected Clase clase;
+    protected Integer puntosD;
 
-    public Monstruo(String nombre, Integer nivel, Double salud, Clase clase, Integer puntosD) {
-        super(nombre, nivel, salud);
+    public Monstruo(String nombre, Clase clase, Integer puntosD) {
+        super(nombre, 1, 100.0);
         this.clase = clase;
         this.puntosD = puntosD;
     }

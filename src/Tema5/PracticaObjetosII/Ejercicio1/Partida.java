@@ -14,15 +14,11 @@ public class Partida {
     public Partida(Jugador player) {
         this.player = player;
         this.monsters = new ArrayList<>(10);
-        iniciarPartida();
+        this.iniciarPartida();
    }
 
     public Jugador getPlayer() {
         return player;
-    }
-
-    public void setPlayer(Jugador player) {
-        this.player = player;
     }
 
     public ArrayList<Monstruo> getMonsters() {
@@ -44,14 +40,27 @@ public class Partida {
      */
    public void iniciarPartida(){
 
-       /*
-       for (int i=1; i<=10; i++){
-            monsters.add(new Monstruo("Ghost",30,150.0, Monstruo.Clase.FANTASMA,60));
+
+       for (int i=1; i<=4; i++){
+
+           Monstruo mn = new Monstruo("Pepín", Monstruo.Clase.DEMONIO,25);
+           this.monsters.add(mn);
        }
 
-        */
+       this.monsters.add( new MonstruoFinal("Jefe", Monstruo.Clase.FANTASMA,30,50));
 
-       player.equipar(new Arma("Arquillo", Arma.Tipo.ARCO,40, true));
+       for (int i=1; i<=4; i++){
+
+           Monstruo mn = new Monstruo("Duende", Monstruo.Clase.SKRALL,20);
+           this.monsters.add(mn);
+       }
+
+       this.monsters.add( new MonstruoFinal("Diablo", Monstruo.Clase.TROLL,25,40));
+
+
+       player.equipar(new Arma("Arquillo", Arma.Tipo.ARCO,200, true));
+
+
 
    }
 
@@ -71,15 +80,11 @@ public class Partida {
 
        if (this.monsters.isEmpty()){
            System.out.println("Termina la partida, el jugador a acabado con todos los monstruos");
-           return false;
-       } else {
            return true;
+       } else {
+           return false;
        }
-
-
-
    }
-
 
 
    public boolean turnoEnemigo(){
@@ -88,11 +93,9 @@ public class Partida {
 
        if (this.player.getSalud() <= 0 ){
            System.out.println("El jugador ha muerto, pierde la partida.");
-           return false;
-       } else
            return true;
-
-
+       } else
+           return false;
 
 
    }

@@ -10,11 +10,10 @@ public class Jugador extends Personaje {
     private Arma armaIzquierda;
 
 
-    public Jugador(String nombre, Integer nivel, Double salud, Clase clase,
-                   Integer experiencia, Arma armaDerecha, Arma armaIzquierda) {
-        super(nombre, nivel, salud);
+    public Jugador(String nombre, Integer nivel, Double salud, Clase clase, Arma armaDerecha, Arma armaIzquierda) {
+        super(nombre, 1, 200.0);
         this.clase = clase;
-        this.experiencia = experiencia;
+        this.experiencia = 0;
         this.armaDerecha = armaDerecha;
         this.armaIzquierda = armaIzquierda;
     }

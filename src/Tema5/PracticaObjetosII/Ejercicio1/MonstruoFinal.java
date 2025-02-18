@@ -6,9 +6,9 @@ public class MonstruoFinal extends Monstruo{
     private Integer usosGolpeEspecial;
 
 
-    public MonstruoFinal(String nombre, Integer nivel, Double salud, Clase clase, Integer puntosD,
+    public MonstruoFinal(String nombre, Clase clase, Integer puntosD,
                          Integer golpeEspecial) {
-        super(nombre, nivel, salud, clase, puntosD);
+        super(nombre, clase, puntosD);
         this.golpeEspecial = golpeEspecial;
         this.usosGolpeEspecial = 3;
     }
@@ -29,15 +29,19 @@ public class MonstruoFinal extends Monstruo{
         this.usosGolpeEspecial = usosGolpeEspecial;
     }
 
+
     @Override
     public String toString() {
-        return "MonstruoFinal{" +
-                "golpeEspecial=" + golpeEspecial +
-                ", usosGolpeEspecial=" + usosGolpeEspecial +
-                ", nombre='" + nombre + '\'' +
-                ", nivel=" + nivel +
-                ", salud=" + salud +
-                '}';
+        final StringBuffer sb = new StringBuffer("MonstruoFinal{");
+        sb.append("golpeEspecial=").append(golpeEspecial);
+        sb.append(", usosGolpeEspecial=").append(usosGolpeEspecial);
+        sb.append(", clase=").append(clase);
+        sb.append(", puntosD=").append(puntosD);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", nivel=").append(nivel);
+        sb.append(", salud=").append(salud);
+        sb.append('}');
+        return sb.toString();
     }
 
     /**
@@ -49,7 +53,7 @@ public class MonstruoFinal extends Monstruo{
     public void golpear(Personaje jugador) {
         jugador.reducirVida(this.golpeEspecial);
 
-        if (this.usosGolpeEspecial -- == 0){
+        if (this.usosGolpeEspecial-- == 0){
             this.usosGolpeEspecial = 0;
         } else
             this.usosGolpeEspecial--;
