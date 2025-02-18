@@ -13,6 +13,18 @@ public class Monstruo extends Personaje {
         this.puntosD = puntosD;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Monstruo{");
+        sb.append("clase=").append(clase);
+        sb.append(", puntosD=").append(puntosD);
+        sb.append(", salud=").append(salud);
+        sb.append(", nivel=").append(nivel);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
     public Clase getClase() {
         return clase;
     }
@@ -40,8 +52,8 @@ public class Monstruo extends Personaje {
     }
 
     @Override
-    public void golpear(Personaje jugador) {
-            jugador.reducirVida(this.getPuntosD());
+    public Boolean golpear(Personaje jugador) {
+        return jugador.reducirVida(this.getPuntosD());
     }
 
 

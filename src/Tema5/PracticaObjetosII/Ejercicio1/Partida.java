@@ -3,6 +3,7 @@ package Tema5.PracticaObjetosII.Ejercicio1;
 
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class Partida {
 
@@ -27,10 +28,25 @@ public class Partida {
 
     @Override
     public String toString() {
-        return "Partida{" +
-                "player=" + player +
-                ", monsters=" + monsters +
-                '}';
+        final StringBuffer sb = new StringBuffer("Partida{");
+        sb.append("player=")
+                .append("vida: ")
+                .append(player.getSalud())
+                .append(", nivel: ")
+                .append(player.getNivel())
+                .append(" y experiencia: ")
+                .append(player.getExperiencia())
+                .append("\n");
+
+        sb.append("Monstruos =");
+        for (Monstruo m : monsters) {
+            sb.append(m.getNombre()).append(" - ")
+                    .append(m.getSalud()).append(" - ")
+                    .append(m.getNivel()).append(" \n ");
+        }
+
+
+        return sb.toString();
     }
 
     /**
@@ -72,31 +88,22 @@ public class Partida {
 
        player.golpear(this.monsters.getFirst());
 
-       if (this.monsters.getFirst().getSalud() <= 0 ){
-           System.out.println("El jugador ha acabado con el monstruo " + this.monsters.getFirst().getNombre());
+       if (this.monsters.getFirst().getSalud() <= 0 || this.monsters.isEmpty()){
            this.monsters.remove(this.monsters.getFirst());
-           return true;
-       }
-
-       if (this.monsters.isEmpty()){
-           System.out.println("Termina la partida, el jugador a acabado con todos los monstruos");
-           return true;
+           return true; //Gana la partida
        } else {
-           return false;
+           return false; //Sigue jugando
        }
    }
 
 
    public boolean turnoEnemigo(){
+       try {
+           return this.monsters.getFirst().golpear(this.player);
+       } catch (NoSuchElementException ex) {
+           System.out.println("No hay más monstruos, qué fiera eres");
+       }
 
-       this.monsters.getFirst().golpear(player);
-
-       if (this.player.getSalud() <= 0 ){
-           System.out.println("El jugador ha muerto, pierde la partida.");
-           return true;
-       } else
-           return false;
-
-
+       return false;
    }
 }

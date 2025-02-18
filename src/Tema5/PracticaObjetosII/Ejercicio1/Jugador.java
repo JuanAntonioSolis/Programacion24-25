@@ -10,7 +10,7 @@ public class Jugador extends Personaje {
     private Arma armaIzquierda;
 
 
-    public Jugador(String nombre, Integer nivel, Double salud, Clase clase, Arma armaDerecha, Arma armaIzquierda) {
+    public Jugador(String nombre, Clase clase, Arma armaDerecha, Arma armaIzquierda) {
         super(nombre, 1, 200.0);
         this.clase = clase;
         this.experiencia = 0;
@@ -52,15 +52,16 @@ public class Jugador extends Personaje {
 
     @Override
     public String toString() {
-        return "Jugador{" +
-                "clase=" + clase +
-                ", experiencia=" + experiencia +
-                ", armaDerecha=" + armaDerecha +
-                ", armaIzquierda=" + armaIzquierda +
-                ", nombre='" + nombre + '\'' +
-                ", nivel=" + nivel +
-                ", salud=" + salud +
-                '}';
+        final StringBuffer sb = new StringBuffer("Jugador{");
+        sb.append("clase=").append(clase);
+        sb.append(", experiencia=").append(experiencia);
+        sb.append(", armaDerecha=").append(armaDerecha);
+        sb.append(", armaIzquierda=").append(armaIzquierda);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", nivel=").append(nivel);
+        sb.append(", salud=").append(salud);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override
@@ -74,28 +75,42 @@ public class Jugador extends Personaje {
     }
 
     @Override
-    public void golpear(Personaje monstruo) {
-        if (this.getArmaDerecha() != null){
-            monstruo.reducirVida(this.getArmaDerecha().getPuntosD());
-            if (! this.getArmaDerecha().getDosManos()){
-                if (this.getArmaIzquierda() != null){
-                    monstruo.reducirVida(this.getArmaIzquierda().getPuntosD());
-                }
+    public Boolean golpear(Personaje monstruo) {
+
+        boolean muere = false;
+
+        if (this.getArmaDerecha() == null && this.getArmaIzquierda() == null) {
+            return false;
+        } else if (this.getArmaDerecha() != null && this.getArmaIzquierda() != null) {
+            //Dos manos
+            if (this.getArmaDerecha().getDosManos()) {
+                muere = monstruo.reducirVida(this.getArmaDerecha().getPuntosD());
+            } else {
+                //Golpear con las dos
+                monstruo.reducirVida(this.getArmaDerecha().getPuntosD());
+                muere = monstruo.reducirVida(this.getArmaIzquierda().getPuntosD());
             }
+        } else if (this.getArmaIzquierda() == null) {
+            muere = monstruo.reducirVida(this.getArmaDerecha().getPuntosD());
         }
 
-        if (monstruo.getSalud() <= 0){
 
+        //Comprobar si el monstruo muere
+        if (muere == false) {
+            return false;
+        } else {
+            //En qué centena estamos
+            int centena = this.experiencia / 100;
+            //Subir la experiencia y el nivel
+            this.experiencia += 10 * monstruo.getNivel();
+            //En qué centena estoy después de subir la experiencia
+            int nuevaCentena = this.experiencia / 100;
 
-            if (this.experiencia + (monstruo.getNivel() * 10) >= 1000){
-                this.experiencia = 1000;
-            } else{
-                this.experiencia += (monstruo.getNivel() * 10);
-                if (this.getExperiencia() % 100 == 0 ){
-                    this.nivel++;
-                }
+            //Detectar si hay un cambio de centena en la experiencia
+            if (centena != nuevaCentena) {
+                this.subirNivel();
             }
-
+            return true;
         }
 
     }

@@ -50,13 +50,14 @@ public class MonstruoFinal extends Monstruo{
      * @param jugador
      */
     @Override
-    public void golpear(Personaje jugador) {
-        jugador.reducirVida(this.golpeEspecial);
+    public Boolean golpear(Personaje jugador) {
 
-        if (this.usosGolpeEspecial-- == 0){
-            this.usosGolpeEspecial = 0;
-        } else
+        if (this.usosGolpeEspecial > 0) {
             this.usosGolpeEspecial--;
+            return jugador.reducirVida(this.golpeEspecial);
+        } else {
+            return super.golpear(jugador);
+        }
     }
 
 

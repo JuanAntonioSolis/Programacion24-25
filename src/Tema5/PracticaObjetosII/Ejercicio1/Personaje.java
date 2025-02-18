@@ -40,11 +40,12 @@ public abstract class Personaje {
 
     @Override
     public String toString() {
-        return "Personaje{" +
-                "nombre='" + nombre + '\'' +
-                ", nivel=" + nivel +
-                ", salud=" + salud +
-                '}';
+        final StringBuffer sb = new StringBuffer("Personaje{");
+        sb.append("nombre='").append(nombre).append('\'');
+        sb.append(", nivel=").append(nivel);
+        sb.append(", salud=").append(salud);
+        sb.append('}');
+        return sb.toString();
     }
 
     public void subirNivel(){
@@ -71,7 +72,7 @@ public abstract class Personaje {
         return false;
     }
 
-    public abstract void golpear(Personaje personaje);
+    public abstract Boolean golpear(Personaje personaje);
 
 
 }
