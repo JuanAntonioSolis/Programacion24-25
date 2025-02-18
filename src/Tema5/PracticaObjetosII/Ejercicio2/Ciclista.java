@@ -9,7 +9,7 @@ public abstract class Ciclista {
     public Ciclista(Integer id, String nombre, Integer tiempoAcumulado) {
         this.id = id;
         this.nombre = nombre;
-        this.tiempoAcumulado = tiempoAcumulado;
+        this.tiempoAcumulado = 0;
     }
 
     public Integer getId() {

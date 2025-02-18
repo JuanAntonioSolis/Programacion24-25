@@ -24,11 +24,15 @@ public class Contrarrelojista extends Ciclista{
                 '}';
     }
 
-
     @Override
     public String imprimirTipo() {
-        return "";
+        return "Ciclista contrarrelojista " + getNombre()
+                + ", velocidadMax=" + velocidadMax;
     }
+
+
+
+
 
 
 }

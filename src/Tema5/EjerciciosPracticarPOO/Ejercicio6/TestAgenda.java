@@ -14,7 +14,7 @@ public class TestAgenda {
 
         int option = -1;
 
-        while (option !=5) { // En cuanto la opción sea 5 se sale del bucle. 5 porque es la opción de salir.
+        while (option !=6) { // En cuanto la opción sea 6 se sale del bucle. 6 porque es la opción de salir.
 
             //Pintar opciones
             System.out.println("AGENDA TELEFÓNICA");

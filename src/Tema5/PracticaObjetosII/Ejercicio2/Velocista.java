@@ -37,6 +37,9 @@ public class Velocista extends Ciclista{
 
     @Override
     public String imprimirTipo() {
-        return "";
+        return "Ciclista velocista " + getNombre()
+                + "potenciaMedia=" + potenciaMedia +
+                ", velocidadMediaSprint=" + velocidadMediaSprint +
+                '}';
     }
 }
