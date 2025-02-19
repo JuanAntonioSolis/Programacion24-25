@@ -4,12 +4,12 @@ public abstract class Ciclista {
 
     private Integer id;
     private String nombre;
-    private Integer tiempoAcumulado;
+    private Integer tiempoAcumulado = 0;
 
     public Ciclista(Integer id, String nombre, Integer tiempoAcumulado) {
         this.id = id;
         this.nombre = nombre;
-        this.tiempoAcumulado = 0;
+        this.tiempoAcumulado = tiempoAcumulado;
     }
 
     public Integer getId() {

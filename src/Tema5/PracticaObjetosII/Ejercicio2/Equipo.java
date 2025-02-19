@@ -44,16 +44,14 @@ public class Equipo {
         this.nombre = nombre;
     }
 
-    /**
-     * Muestra los datos del equipo por pantalla
-     * @return
-     */
-    protected String imprimirDatosEquipo() {
-        return "Equipo{" +
-                "nombre='" + nombre + '\'' +
-                ", pais='" + pais + '\'' +
-                ", ciclistas: " + equipo +
-                '}';
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Equipo{");
+        sb.append("nombre='").append(nombre).append('\'');
+        sb.append(", pais='").append(pais).append('\'');
+        sb.append(", equipo=").append(equipo);
+        sb.append('}');
+        return sb.toString();
     }
 
     /**
@@ -71,10 +69,10 @@ public class Equipo {
      */
     protected Integer calcularTiempoCarrera() {
         for (Ciclista cic: equipo) {
-            tiemposCarrera+= cic.getTiempoAcumulado();
+            Equipo.tiemposCarrera += cic.getTiempoAcumulado();
         }
 
-        return tiemposCarrera;
+        return Equipo.tiemposCarrera;
     }
 
     /**
@@ -86,14 +84,38 @@ public class Equipo {
         }
     }
 
-    public void encontrarCiclista(Integer id){
+    public boolean encontrarCiclista(Integer id){
 
+
+        for (Ciclista cic: equipo) {
+            if (cic.getId().equals(id)) {
+                System.out.println("Ciclista encontrado: ");
+                System.out.println(cic);
+                return true;
+            } else{
+                System.out.println("Ciclista no encontrado");
+                return false;
+            }
+
+        }
+        return false;
+
+        /*
         int posicion = this.equipo.indexOf(id);
 
         if (posicion <0){
             System.out.println("Ciclista no encontrado");
-        } else
+            return false;
+        } else{
             System.out.println("Ciclista encontrado");
+            System.out.println(this.equipo.indexOf(id));
+            return true;
+        }
+
+         */
+
+
+
     }
 
 
