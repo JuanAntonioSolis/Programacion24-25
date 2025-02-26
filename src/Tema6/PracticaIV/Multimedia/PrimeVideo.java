@@ -14,5 +14,7 @@ public class PrimeVideo {
         this.ganancias = 0.0;
     }
 
-    public
+    //Public void add suscrip, primero comprobar que no está...
+
+
 }
