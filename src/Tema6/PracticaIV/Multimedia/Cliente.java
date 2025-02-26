@@ -40,10 +40,6 @@ public abstract class Cliente {
         this.mail = mail;
     }
 
-    public Double getPrecioMensual() {
-        return precioMensual;
-    }
-
     public void setPrecioMensual(Double precioMensual) {
         this.precioMensual = precioMensual;
     }
@@ -58,6 +54,12 @@ public abstract class Cliente {
         sb.append('}');
         return sb.toString();
     }
+
+    public abstract boolean esPro();
+
+    public abstract Double getPrecioMensual();
+
+
 
 
 
