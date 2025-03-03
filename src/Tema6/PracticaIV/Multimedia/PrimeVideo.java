@@ -14,7 +14,54 @@ public class PrimeVideo {
         this.ganancias = 0.0;
     }
 
-    //Public void add suscrip, primero comprobar que no está...
+
+    /**
+     * Metodo que añade clientes a la lista de suscriptores
+     * Primero comprueba que el cliente no esté en la lista
+     * @param cte
+     */
+    public void addSuscriptor(Cliente cte){
+
+        for (Cliente suscrip : suscriptores){
+            if (!suscrip.getDni().equals(cte.getDni())){
+                this.suscriptores.add(suscrip);
+                break;
+            }
+        }
+
+    }
+
+    /**
+     * Metdodo que añade multimedia a la lista de catálogo
+     * Primero se comprueba que la multimedia no esté ya en la lista
+     * @param multi
+     */
+    public void addMultimedia(Multimedia multi){
+        for (Multimedia m : catalogo){
+            if (!m.getCodigo().equals(multi.getCodigo())){
+                this.catalogo.add(multi);
+                break;
+            }
+        }
+    }
+
+
+    /**
+     * Metodo que hace un cliente ver una serie.
+     * En caso de que no sea pro, se añade el precio de la multimedia a las ganancias
+     * @param m
+     * @param c
+     */
+    public void ver(Multimedia m, Cliente c){
+        if (!c.esPro()){
+            this.ganancias+=m.getPrecio();
+        }
+    }
+
+
+
+
+
 
 
 }

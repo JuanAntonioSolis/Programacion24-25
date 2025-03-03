@@ -1,5 +1,7 @@
 package Tema6.PracticaIV.Multimedia;
 
+import java.util.Objects;
+
 public abstract class Cliente {
 
     protected String dni;
@@ -53,6 +55,19 @@ public abstract class Cliente {
         sb.append(", precioMensual=").append(precioMensual);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return Objects.equals(dni, cliente.dni);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(dni);
     }
 
     public abstract boolean esPro();
