@@ -58,10 +58,7 @@ public class PrimeVideo {
         }
     }
 
-
-
-
-
-
-
+    public Double getGanancias() {
+        return ganancias;
+    }
 }
