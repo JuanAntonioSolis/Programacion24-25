@@ -53,8 +53,10 @@ public class PrimeVideo {
      * @param c
      */
     public void ver(Multimedia m, Cliente c){
-        if (!c.esPro()){
-            this.ganancias+=m.getPrecio();
+        if (m.getPlus()){
+            if (!c.esPro()){
+                this.ganancias+=m.getPrecio();
+            }
         }
     }
 
