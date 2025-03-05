@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Multimedia {
 
-    private Long codigo;
-    private String titulo;
-    private Boolean plus;
-    private Double precio;
-    private Genero genero;
+    protected Long codigo;
+    protected String titulo;
+    protected Boolean plus;
+    protected Double precio;
+    protected Genero genero;
 
     private static Long autoincremento = 1L;
 

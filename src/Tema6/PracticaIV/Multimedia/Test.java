@@ -9,7 +9,7 @@ public class Test {
         pv.addMultimedia(new Pelicula("Film",Boolean.FALSE,10.0,100));
 
 
-        System.out.println(pv   );
+        System.out.println(pv);
 
 
 
