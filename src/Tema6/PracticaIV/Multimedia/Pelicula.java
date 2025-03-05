@@ -1,11 +1,11 @@
 package Tema6.PracticaIV.Multimedia;
 
-public class Película extends Multimedia{
+public class Pelicula extends Multimedia{
 
     private Integer duracion;
 
 
-    public Película(String titulo, Boolean plus, Double precio, Integer duracion) {
+    public Pelicula(String titulo, Boolean plus, Double precio, Integer duracion) {
         super(titulo, plus, precio);
         this.duracion = duracion;
     }

@@ -14,6 +14,15 @@ public class PrimeVideo {
         this.ganancias = 0.0;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("PrimeVideo{");
+        sb.append("catalogo=").append(catalogo);
+        sb.append(", suscriptores=").append(suscriptores);
+        sb.append(", ganancias=").append(ganancias);
+        sb.append('}');
+        return sb.toString();
+    }
 
     /**
      * Metodo que añade clientes a la lista de suscriptores
@@ -25,7 +34,6 @@ public class PrimeVideo {
         for (Cliente suscrip : suscriptores){
             if (!suscrip.getDni().equals(cte.getDni())){
                 this.suscriptores.add(suscrip);
-                break;
             }
         }
 
@@ -40,7 +48,6 @@ public class PrimeVideo {
         for (Multimedia m : catalogo){
             if (!m.getCodigo().equals(multi.getCodigo())){
                 this.catalogo.add(multi);
-                break;
             }
         }
     }
@@ -61,6 +68,12 @@ public class PrimeVideo {
     }
 
     public Double getGanancias() {
-        return ganancias;
+
+        for (Cliente c : suscriptores){
+            this.ganancias += c.getPrecioMensual()*12;
+        }
+
+        return this.ganancias;
+
     }
 }
