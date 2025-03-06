@@ -42,6 +42,7 @@ public class Serie extends Multimedia{
      * @param t
      */
     public void addTemporada(Temporada t) {
+        t.setSerie(this);
         this.temporadas.add(t);
     }
 

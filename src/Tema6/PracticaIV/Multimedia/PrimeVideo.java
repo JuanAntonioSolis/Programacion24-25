@@ -14,6 +14,14 @@ public class PrimeVideo {
         this.ganancias = 0.0;
     }
 
+    public ArrayList<Multimedia> getCatalogo() {
+        return catalogo;
+    }
+
+    public ArrayList<Cliente> getSuscriptores() {
+        return suscriptores;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("PrimeVideo{");
@@ -31,12 +39,9 @@ public class PrimeVideo {
      */
     public void addSuscriptor(Cliente cte){
 
-        for (Cliente suscrip : suscriptores){
-            if (!suscrip.getDni().equals(cte.getDni())){
-                this.suscriptores.add(suscrip);
-            }
+        if (!this.suscriptores.contains(cte)){
+            this.suscriptores.add(cte);
         }
-
     }
 
     /**
@@ -45,10 +50,9 @@ public class PrimeVideo {
      * @param multi
      */
     public void addMultimedia(Multimedia multi){
-        for (Multimedia m : catalogo){
-            if (!m.getCodigo().equals(multi.getCodigo())){
-                this.catalogo.add(multi);
-            }
+
+        if (!this.catalogo.contains(multi)){
+            this.catalogo.add(multi);
         }
     }
 
