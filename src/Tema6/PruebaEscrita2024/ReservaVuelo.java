@@ -1,7 +1,7 @@
 package Tema6.PruebaEscrita2024;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class ReservaVuelo {
 
@@ -18,7 +18,7 @@ public class ReservaVuelo {
         autoincremento++;
         this.id = autoincremento;
         this.vuelo = vuelo;
-        this.pasajeros = pasajeros;
+        this.pasajeros = new ArrayList<>();
         this.tipoT = tipoT;
         this.tipoA = tipoA;
     }
@@ -63,9 +63,9 @@ public class ReservaVuelo {
     public String toString() {
         final StringBuffer sb = new StringBuffer("ReservaVuelo{");
         sb.append("id=").append(id);
-        sb.append(", codigo del vuelo^= ").append(vuelo.getCodigo());
+        sb.append(", codigo del vuelo= ").append(vuelo.getCodigo());
         sb.append(", dias restantes=").append(vuelo.diasFaltanVuelo());
-        //Llamar a imprimir billetes
+        sb.append(", billetes=").append(this.imprimirBilletes());
         sb.append('}');
         return sb.toString();
     }
@@ -75,7 +75,7 @@ public class ReservaVuelo {
      * Añade pasajeros a la lista
      * @param p
      */
-    public void addPasajero(Pasajero p) {
+    private void addPasajero(Pasajero p) {
         if (!pasajeros.contains(p)) {
             pasajeros.add(p);
         }
@@ -93,16 +93,63 @@ public class ReservaVuelo {
         ArrayList<Asiento> asientos = new ArrayList<>();
 
         for (Pasajero p : pasajeros) {
-            asientos.add(p.getAsiento());
+                asientos.add(p.getAsiento());
         }
         return asientos;
     }
 
-    public void reservaAsiento(Pasajero p) {
+    /**
+     * Verifica si hay dispo. de asientos del tipo pedido,
+     * busca asiento libre y ocupa el asiento con el pasajero.
+     * @param p
+     * @return
+     */
+    public boolean reservaAsiento(Pasajero p) {
         if (this.vuelo.verificarDisponibilidad(this.tipoA) > 0){
-            this.vuelo.ocuparAsiento(p,this.vuelo.buscarAsientoDisponible(this.tipoA));
-            this.pasajeros.add(p);
+            Pasajero nuevo = new Pasajero(p);
+            this.vuelo.ocuparAsiento(nuevo,this.vuelo.buscarAsientoDisponible(this.tipoA));
+            this.addPasajero(nuevo);
+            return true;
+        } else
+            return false;
+    }
+
+    /**
+     * Devuelve el total de los precios de todas las reservas.
+     * Dependiendo del tipo de tarifas devuelve un valor u otro.
+     * @return
+     */
+    public Double calcularPrecioTotal(){
+        Double precioTotal = 0.0;
+
+        for (Asiento asiento : getAsientos()){
+            if (tipoT.equals(TipoTarifa.CONFORT)){
+                precioTotal += 1.15 * asiento.calcularPrecio();
+            }
+            if (tipoT.equals(TipoTarifa.OPTIMA)){
+                precioTotal += 1.1 * asiento.calcularPrecio();
+            }
+            if (tipoT.equals(TipoTarifa.FLEXIBLE)){
+                precioTotal += 1.30 * asiento.calcularPrecio();
+            }
         }
+
+        return precioTotal;
+    }
+
+    public String imprimirBilletes(){
+        StringBuffer sb = new StringBuffer();
+        for (Pasajero pasajero : this.getPasajeros()){
+            sb.append(pasajero.getDniPasaporte());
+            sb.append(" : ");
+            sb.append(pasajero.getAsiento().getCodigo());
+            sb.append("\n");
+        }
+
+        sb.append("Precio total: ");
+        sb.append(this.calcularPrecioTotal());
+
+        return sb.toString();
     }
 
 

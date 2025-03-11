@@ -18,18 +18,18 @@ public class Pasajero extends Persona{
     }
 
     public Pasajero(Pasajero j){
-        this.id = j.getId();
-        this.nombre = j.getNombre();
-        this.apellidos = j.getApellidos();
-        this.dniPasaporte = j.getDniPasaporte();
-        this.email = j.getEmail();
-        this.direccion = j.getDireccion();
-        this.ciudad = j.getCiudad();
-        this.pais = j.getPais();
-        this.telefono = j.getTelefono();
-        this.preferenciasComida = j.getPreferenciasComida();
-        this.restriccionesMedicas = j.getRestriccionesMedicas();
-        this.asiento = j.getAsiento();
+        this.id = j.id;
+        this.nombre = j.nombre;
+        this.apellidos = j.apellidos;
+        this.dniPasaporte = j.dniPasaporte;
+        this.email = j.email;
+        this.direccion = j.direccion;
+        this.ciudad = j.ciudad;
+        this.pais = j.pais;
+        this.telefono = j.telefono;
+        this.preferenciasComida = j.preferenciasComida;
+        this.restriccionesMedicas = j.restriccionesMedicas;
+        this.asiento = j.asiento;
     }
 
     public String getPreferenciasComida() {

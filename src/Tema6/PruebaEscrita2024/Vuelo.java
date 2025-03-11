@@ -2,10 +2,10 @@ package Tema6.PruebaEscrita2024;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Vuelo {
 
@@ -18,9 +18,9 @@ public class Vuelo {
     private Integer asientosDisponibles;
     private ArrayList<Asiento> asientos;
 
-    public Vuelo(String codigo, String origen, String destino,
+    public Vuelo(String origen, String destino,
                  LocalDate fecha, LocalTime hora, Double precioBase, Integer asientosDisponibles) {
-        this.codigo = codigo;
+        this.codigo = UUID.randomUUID().toString();
         this.origen = origen;
         this.destino = destino;
         this.fecha = fecha;
@@ -31,12 +31,12 @@ public class Vuelo {
 
         //Añade asientos turista
         for (int i = 0; i < asientosDisponibles * 0.7; i++) {
-            this.addAsiento(new AsientoTurista(this.precioBase,1+i,"A"+i, Boolean.TRUE));
+            this.addAsiento(new AsientoTurista(200.0,i/4,"A"+i, Boolean.TRUE));
         }
 
         //Añade asientos business
         for (int i = 0; i < asientosDisponibles * 0.3; i++) {
-            this.addAsiento(new AsientoBusiness(this.precioBase,1+i,"B"+i, Boolean.TRUE));
+            this.addAsiento(new AsientoBusiness(300.0,i/4,"B"+i, Boolean.TRUE));
         }
     }
 
@@ -110,7 +110,11 @@ public class Vuelo {
         sb.append(", hora=").append(hora);
         sb.append(", precioBase=").append(precioBase);
         sb.append(", asientosDisponibles=").append(asientosDisponibles);
-        sb.append(", asientos=").append(asientos);
+        sb.append(", asientos=\n");
+        for (Asiento as : asientos){
+            sb.append(as.toString());
+            sb.append("\n");
+        }
         sb.append('}');
         return sb.toString();
     }
@@ -139,12 +143,16 @@ public class Vuelo {
      */
     public int verificarDisponibilidad(TipoAsiento tipodeAsiento){
 
+        int cont = 0;
+
         for (Asiento asiento : this.asientos){
             if (asiento.getTipo().equals(tipodeAsiento)){
-                return this.asientosDisponibles - this.asientos.indexOf(asiento);
+                if (asiento.getPasajero() == null){
+                    cont++;
+                }
             }
         }
-        return 0;
+        return cont;
     }
 
     /**
@@ -154,7 +162,7 @@ public class Vuelo {
      */
     public Asiento buscarAsientoDisponible(TipoAsiento tipodeAsiento){
         for (Asiento asiento : this.asientos){
-            if (asiento.getTipo().equals(tipodeAsiento)){
+            if (asiento.getTipo().equals(tipodeAsiento) && asiento.getPasajero() == null){
                 return asiento;
             }
         }
@@ -168,7 +176,7 @@ public class Vuelo {
      * @return
      */
     public boolean ocuparAsiento(Pasajero p, Asiento asiento){
-        if (this.asientos.contains(asiento)){
+        if (asiento.getPasajero() == null){
             p.setAsiento(asiento);
             asiento.setPasajero(p);
             return true;
@@ -182,9 +190,9 @@ public class Vuelo {
      */
     public void liberarAsiento(Asiento asiento){
 
-        if (asiento.pasajero != null){
+        if (asiento.getPasajero() != null){
+            asiento.getPasajero().setAsiento(null);
             asiento.setPasajero(null);
-            asiento.pasajero.setAsiento(null);
         }
     }
 
@@ -196,6 +204,7 @@ public class Vuelo {
     public Long diasFaltanVuelo(){
 
         return LocalDate.now().until(this.fecha, ChronoUnit.DAYS);
+
     }
 
     /**
@@ -205,11 +214,16 @@ public class Vuelo {
     public ArrayList<Pasajero> getPasajeros() {
         ArrayList<Pasajero> listaPasajeros =  new ArrayList<>();
         for (Asiento asiento : this.asientos){
-            listaPasajeros.add(asiento.getPasajero());
+            if (asiento.getPasajero() != null){
+                listaPasajeros.add(asiento.getPasajero());
+            }
+
         }
 
         return listaPasajeros;
     }
+
+
 
 
 

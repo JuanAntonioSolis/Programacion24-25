@@ -22,10 +22,10 @@ public class AsientoBusiness extends Asiento{
     public String toString() {
         final StringBuffer sb = new StringBuffer("AsientoBusiness{");
         sb.append("Codigo: ").append(this.getCodigo());
-        sb.append(", precio:").append(precioBase);
+        sb.append(", precio:").append(this.calcularPrecio());
         sb.append(", tipo:").append(tipo);
         sb.append(", comida").append(comida);
-        sb.append(", DNI Pasajero: ").append(this.pasajero.getDniPasaporte());
+        sb.append(", DNI Pasajero: ").append(this.getPasajero().getDniPasaporte());
         sb.append('}');
         return sb.toString();
     }

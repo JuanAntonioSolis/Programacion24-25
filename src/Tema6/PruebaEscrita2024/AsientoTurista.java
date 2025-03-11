@@ -22,10 +22,10 @@ public class AsientoTurista extends Asiento{
     public String toString() {
         final StringBuffer sb = new StringBuffer("AsientoTurista{");
         sb.append("Codigo: ").append(this.getCodigo());
-        sb.append(", precio: ").append(precioBase);
+        sb.append(", precio: ").append(this.calcularPrecio());
         sb.append(", tipo=").append(tipo);
         sb.append(", ventana=").append(ventana);
-        sb.append(", DNI Pasajero: ").append(this.pasajero.getDniPasaporte());
+        sb.append(", DNI Pasajero: ").append(this.getPasajero().getDniPasaporte());
         sb.append('}');
         return sb.toString();
     }
