@@ -2,6 +2,8 @@ package Tema6.PruebaEscrita2024;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -27,8 +29,14 @@ public class Vuelo {
         this.asientosDisponibles = asientosDisponibles;
         this.asientos = new ArrayList<>();
 
+        //Añade asientos turista
         for (int i = 0; i < asientosDisponibles * 0.7; i++) {
-            this.addAsiento(new AsientoTurista(this.precioBase,));
+            this.addAsiento(new AsientoTurista(this.precioBase,1+i,"A"+i, Boolean.TRUE));
+        }
+
+        //Añade asientos business
+        for (int i = 0; i < asientosDisponibles * 0.3; i++) {
+            this.addAsiento(new AsientoBusiness(this.precioBase,1+i,"B"+i, Boolean.TRUE));
         }
     }
 
@@ -123,6 +131,89 @@ public class Vuelo {
     public void addAsiento(Asiento asiento) {
         this.asientos.add(asiento);
     }
+
+    /**
+     * Verifica cuantos asientos disponibles del tipo especificado hay
+     * @param tipodeAsiento
+     * @return
+     */
+    public int verificarDisponibilidad(TipoAsiento tipodeAsiento){
+
+        for (Asiento asiento : this.asientos){
+            if (asiento.getTipo().equals(tipodeAsiento)){
+                return this.asientosDisponibles - this.asientos.indexOf(asiento);
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * Devuelve el primer asiento libre del tipo indicado.
+     * @param tipodeAsiento
+     * @return
+     */
+    public Asiento buscarAsientoDisponible(TipoAsiento tipodeAsiento){
+        for (Asiento asiento : this.asientos){
+            if (asiento.getTipo().equals(tipodeAsiento)){
+                return asiento;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Asigna un asiento a un pasajero, y el pasajero ocupa ese asiento
+     * @param p
+     * @param asiento
+     * @return
+     */
+    public boolean ocuparAsiento(Pasajero p, Asiento asiento){
+        if (this.asientos.contains(asiento)){
+            p.setAsiento(asiento);
+            asiento.setPasajero(p);
+            return true;
+        } else
+            return false;
+    }
+
+    /**
+     * Se quita el pasajero del asiento, y el asiento del pasajero
+     * @param asiento
+     */
+    public void liberarAsiento(Asiento asiento){
+
+        if (asiento.pasajero != null){
+            asiento.setPasajero(null);
+            asiento.pasajero.setAsiento(null);
+        }
+    }
+
+
+    /**
+     * Devuelve los dias que faltan para el vuelo
+     * @return
+     */
+    public Long diasFaltanVuelo(){
+
+        return LocalDate.now().until(this.fecha, ChronoUnit.DAYS);
+    }
+
+    /**
+     * Devuelve una lista de pasajeros de cada vuelo
+     * @return
+     */
+    public ArrayList<Pasajero> getPasajeros() {
+        ArrayList<Pasajero> listaPasajeros =  new ArrayList<>();
+        for (Asiento asiento : this.asientos){
+            listaPasajeros.add(asiento.getPasajero());
+        }
+
+        return listaPasajeros;
+    }
+
+
+
+
 
 
 }
