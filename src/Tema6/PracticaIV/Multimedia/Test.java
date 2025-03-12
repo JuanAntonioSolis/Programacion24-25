@@ -59,6 +59,7 @@ public class Test {
         }
 
         //sout getgananciaspv
+        //sisi
         System.out.println(pv.getGanancias());
 
 
