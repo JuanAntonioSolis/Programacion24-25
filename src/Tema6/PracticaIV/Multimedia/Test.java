@@ -25,6 +25,7 @@ public class Test {
         for (int i = 1; i <= 25; i++){
             Cliente ct1 = new ClientePrimePro("11223344D"+i,"SusPrimePro","pro@gmail.com");
             pv.addSuscriptor(ct1);
+
         }
 
 
@@ -57,6 +58,7 @@ public class Test {
             }
         }
 
+        //sout getgananciaspv
         System.out.println(pv.getGanancias());
 
 
