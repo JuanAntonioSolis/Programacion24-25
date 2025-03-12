@@ -17,7 +17,8 @@ public abstract class Persona {
     public Persona() {
     }
 
-    public Persona(Long id, String nombre, String apellidos, String dniPasaporte, String email, String direccion, String ciudad, String pais, String telefono) {
+    public Persona(Long id, String nombre, String apellidos,
+                   String dniPasaporte, String email, String direccion, String ciudad, String pais, String telefono) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
