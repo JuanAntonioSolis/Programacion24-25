@@ -17,12 +17,13 @@ public class Multimedia {
         this.codigo=autoincremento;
     }
 
-    public Multimedia(String titulo, Boolean plus, Double precio) {
+    public Multimedia(String titulo, Boolean plus, Double precio,Genero genero) {
         autoincremento++;
         this.codigo =  autoincremento;
         this.titulo = titulo;
         this.plus = plus;
         this.precio = precio;
+        this.genero = genero;
     }
 
     public Long getCodigo() {

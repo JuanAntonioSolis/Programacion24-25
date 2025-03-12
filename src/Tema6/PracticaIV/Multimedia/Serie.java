@@ -6,8 +6,8 @@ public class Serie extends Multimedia{
 
     private ArrayList<Temporada> temporadas;
 
-    public Serie(String titulo, Boolean plus, Double precio) {
-        super(titulo, plus, precio);
+    public Serie(String titulo, Boolean plus, Double precio,Genero genero) {
+        super(titulo, plus, precio,genero);
         this.temporadas = new ArrayList<>();
     }
 
