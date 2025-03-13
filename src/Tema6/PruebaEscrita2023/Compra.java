@@ -71,6 +71,11 @@ public class Compra implements Enviable {
         this.listaCompra.remove(lc);
     }
 
+
+    /**
+     * Devuelve detalles totales del pedido
+     * @return
+     */
     @Override
     public String crearEmail() {
         StringBuffer sb = new StringBuffer();
