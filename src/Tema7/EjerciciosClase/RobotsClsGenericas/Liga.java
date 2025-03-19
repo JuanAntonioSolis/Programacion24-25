@@ -1,4 +1,4 @@
-package Tema7.EjerciciosClase.Robots;
+package Tema7.EjerciciosClase.RobotsClsGenericas;
 
 import java.util.ArrayList;
 

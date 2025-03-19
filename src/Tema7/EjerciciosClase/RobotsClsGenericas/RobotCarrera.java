@@ -1,4 +1,4 @@
-package Tema7.EjerciciosClase.Robots;
+package Tema7.EjerciciosClase.RobotsClsGenericas;
 
 public class RobotCarrera extends Robot{
 

@@ -1,4 +1,4 @@
-package Tema7.EjerciciosClase.Robots;
+package Tema7.EjerciciosClase.RobotsClsGenericas;
 
 abstract public class Robot {
 
