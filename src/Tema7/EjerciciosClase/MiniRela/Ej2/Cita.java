@@ -56,7 +56,8 @@ public class Cita {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Cita{");
-        sb.append("persona=").append(persona.getNombre());
+        sb.append("Nombre paciente=").append(persona.getNombre());
+        sb.append(", apellido paciente=").append(persona.getApellidos());
         sb.append(", fecha=").append(fecha);
         sb.append(", hora=").append(hora);
         sb.append(", tipo=").append(tipo);
