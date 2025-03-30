@@ -1,9 +1,10 @@
 package Tema7.PracticaI.Alumnos;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Expediente {
+public class Expediente implements Comparator<Expediente> {
 
     private Estudiante estudiante;
     private HashSet<NotasCurso> notas;
@@ -38,11 +39,20 @@ public class Expediente {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Expediente{");
-        sb.append("estudiante=").append(estudiante);
+        sb.append("dni estudiante=").append(estudiante.getDni());
+        sb.append(", nombre estudiante=").append(estudiante.getNombre());
         sb.append(", notas=").append(notas);
         sb.append(", activo=").append(activo);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public int compare(Expediente o1, Expediente o2) {
+        if (o1.getEstudiante().getDni().compareTo(o2.getEstudiante().getDni()) != 0) {
+            return 0;
+        }
+        return 1;
     }
 
     @Override
@@ -63,11 +73,13 @@ public class Expediente {
     }
 
     public void mostrarNotas(Integer curso, String etapa){
-        for (NotasCurso nc : notas) {
+
+        for (NotasCurso nc : this.notas) {
             if (nc.getCurso().equals(curso) && nc.getEtapa().equals(etapa)) {
                 System.out.println(nc);
             }
         }
+
     }
 
 

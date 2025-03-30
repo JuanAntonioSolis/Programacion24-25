@@ -22,7 +22,7 @@ public class CentroEducativo {
         this.localidad = localidad;
         this.telefono = telefono;
         this.email = email;
-        expedientes = new TreeSet<>(Comparator.comparing(Expediente::getActivo));
+        expedientes = new TreeSet<>(Comparator.comparing(Expediente::getEstudiante));
     }
 
     public String getNombreCentro() {
