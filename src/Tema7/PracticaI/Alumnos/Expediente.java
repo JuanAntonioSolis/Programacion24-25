@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 
-public class Expediente implements Comparator<Expediente> {
+public class Expediente {
 
     private Estudiante estudiante;
     private HashSet<NotasCurso> notas;
@@ -47,13 +47,6 @@ public class Expediente implements Comparator<Expediente> {
         return sb.toString();
     }
 
-    @Override
-    public int compare(Expediente o1, Expediente o2) {
-        if (o1.getEstudiante().getDni().compareTo(o2.getEstudiante().getDni()) != 0) {
-            return 0;
-        }
-        return 1;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -74,9 +67,15 @@ public class Expediente implements Comparator<Expediente> {
 
     public void mostrarNotas(Integer curso, String etapa){
 
+        StringBuffer sb = new StringBuffer();
+
         for (NotasCurso nc : this.notas) {
-            if (nc.getCurso().equals(curso) && nc.getEtapa().equals(etapa)) {
-                System.out.println(nc);
+            if (nc.getCurso().equals(curso) && nc.getEtapa().toString().equals(etapa)) {
+                sb.append("Las notas del alumno ").append(this.estudiante.getNombre());
+                sb.append(", del curso ").append(nc.getCurso());
+                sb.append(":\n");
+                sb.append(nc.getNotas());
+                System.out.println(sb);
             }
         }
 

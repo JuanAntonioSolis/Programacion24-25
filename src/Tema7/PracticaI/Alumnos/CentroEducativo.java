@@ -22,7 +22,12 @@ public class CentroEducativo {
         this.localidad = localidad;
         this.telefono = telefono;
         this.email = email;
-        expedientes = new TreeSet<>(Comparator.comparing(Expediente::getEstudiante));
+        expedientes = new TreeSet<>(new Comparator<Expediente>() {
+            @Override
+            public int compare(Expediente o1, Expediente o2) {
+                return o1.getEstudiante().getDni().compareTo(o2.getEstudiante().getDni());
+            }
+        });
     }
 
     public String getNombreCentro() {
@@ -99,6 +104,11 @@ public class CentroEducativo {
         this.expedientes.add(exp);
     }
 
+    /**
+     * De un alumno, devuelve todas las notas de todos los cursos
+     * @param dni
+     * @return
+     */
     public ArrayList<NotasCurso> buscarExpediente(String dni){
 
 

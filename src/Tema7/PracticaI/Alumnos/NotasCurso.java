@@ -103,8 +103,8 @@ public class NotasCurso {
      */
     public Double buscar(String asignatura) {
         for (String nota: notas.keySet()) {
-            if (nota.equals(asignatura)) {
-                return notas.get(nota);
+            if (nota.equalsIgnoreCase(asignatura)) {
+                return notas.get(asignatura);
             }
         }
 
