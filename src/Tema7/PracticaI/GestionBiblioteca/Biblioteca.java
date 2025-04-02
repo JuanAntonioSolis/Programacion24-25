@@ -138,8 +138,13 @@ public class Biblioteca {
             this.prestamos.put(this.usuarios.get(dni),prestamosCliente);
         }
 
+    }
 
+    public void devolverLibro(String dni, String isbn){
+        Prestamo ne = new Prestamo(this.usuarios.get(dni),this.catalogo.get(isbn), LocalDate.now());
+        if (this.prestamos.containsKey(this.usuarios.get(dni)) && this.prestamos.values().contains(ne)){
 
+        }
     }
 
 
