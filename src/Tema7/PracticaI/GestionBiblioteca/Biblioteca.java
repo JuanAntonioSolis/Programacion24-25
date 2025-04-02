@@ -1,5 +1,6 @@
 package Tema7.PracticaI.GestionBiblioteca;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Biblioteca {
@@ -114,16 +115,31 @@ public class Biblioteca {
         this.usuarios.put(u.getDNI(),u);
     }
 
-    public void esLibroDisponble(String isbn){
+    public Boolean esLibroDisponble(String isbn){
 
         for (HashSet<Prestamo> prestValores : this.prestamos.values()){
             for (Prestamo p : prestValores){
                 if (p.estaActivo() && p.getLibro().getISBN().equals(isbn)){
                     System.out.println("El libro está disponible");
-                } else
-                    System.out.println("El libro no está disponible");
+                    return true;
+                }
             }
         }
+        return false;
+    }
+
+    public void prestarLibro(String dni, String isbn){
+
+        HashSet<Prestamo> prestamosCliente = new HashSet<>();
+
+        if (this.esLibroDisponble(isbn) && this.usuarios.containsKey(dni)){
+            Prestamo nuevo = new Prestamo(this.usuarios.get(dni),this.catalogo.get(isbn), LocalDate.now());
+            prestamosCliente.add(nuevo);
+            this.prestamos.put(this.usuarios.get(dni),prestamosCliente);
+        }
+
+
+
     }
 
 

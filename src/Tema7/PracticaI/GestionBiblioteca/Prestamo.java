@@ -10,11 +10,11 @@ public class Prestamo {
     private LocalDate fechaPrestamo;
     private LocalDate fechaDevolucion;
 
-    public Prestamo(Usuario usuario, Libro libro, LocalDate fechaPrestamo, LocalDate fechaDevolucion) {
+    public Prestamo(Usuario usuario, Libro libro, LocalDate fechaPrestamo) {
         this.usuario = usuario;
         this.libro = libro;
         this.fechaPrestamo = fechaPrestamo;
-        this.fechaDevolucion = fechaDevolucion;
+        this.fechaDevolucion = this.fechaPrestamo.plusDays(30);
     }
 
     public Usuario getUsuario() {
