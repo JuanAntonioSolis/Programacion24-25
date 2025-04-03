@@ -105,18 +105,28 @@ public class Biblioteca {
      */
     public void addLibro(Libro l){
         this.catalogo.put(l.getISBN(),l);
+
     }
 
     /**
      * Añade un usuario a la lista de usuarios
+     * Además, se añade en el treemap de prestamos, con un nuevo préstamo
      * @param u
      */
-    public void addUsuario(Usuario u){
-        this.usuarios.put(u.getDNI(),u);
+    public boolean addUsuario(Usuario u){
+
+        if (!this.usuarios.containsKey(u.getDNI())){
+            this.usuarios.put(u.getDNI(),u);
+            this.prestamos.put(u,new HashSet<>());
+            return true;
+        } else
+            return false;
+
     }
 
     public Boolean esLibroDisponble(String isbn){
 
+        /*
         for (HashSet<Prestamo> prestValores : this.prestamos.values()){
             for (Prestamo p : prestValores){
                 if (p.estaActivo() && p.getLibro().getISBN().equals(isbn)){
@@ -126,25 +136,52 @@ public class Biblioteca {
             }
         }
         return false;
+         */
+
+        for (Usuario user : this.prestamos.keySet()){
+            for (Prestamo prest : this.prestamos.get(user)){
+                if (prest.estaActivo() && prest.getLibro().getISBN().equals(isbn)){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+
     }
 
     public void prestarLibro(String dni, String isbn){
 
-        HashSet<Prestamo> prestamosCliente = new HashSet<>();
-
-        if (this.esLibroDisponble(isbn) && this.usuarios.containsKey(dni)){
-            Prestamo nuevo = new Prestamo(this.usuarios.get(dni),this.catalogo.get(isbn), LocalDate.now());
-            prestamosCliente.add(nuevo);
-            this.prestamos.put(this.usuarios.get(dni),prestamosCliente);
+        if (this.esLibroDisponble(isbn)){
+            this.prestamos.get(usuarios.get(dni)).add(new Prestamo(this.usuarios.get(dni),this.catalogo.get(isbn),LocalDate.now()));
+            this.prestamos.put(this.usuarios.get(dni), this.prestamos.get(usuarios.get(dni)));
         }
 
     }
 
     public void devolverLibro(String dni, String isbn){
-        Prestamo ne = new Prestamo(this.usuarios.get(dni),this.catalogo.get(isbn), LocalDate.now());
-        if (this.prestamos.containsKey(this.usuarios.get(dni)) && this.prestamos.values().contains(ne)){
 
+        for (Usuario user : this.prestamos.keySet()){
+            if (user.getDNI().equals(dni)){
+                for (Prestamo prest : this.prestamos.get(user)){
+                    if (prest.getLibro().getISBN().equals(isbn)){
+                        prest.devolverLibro();
+                    }
+                }
+            }
         }
+
+    }
+
+    public HashSet<Prestamo> buscarPrestamosUsuario(String dni){
+        return this.prestamos.get(usuarios.get(dni));
+    }
+
+    public Libro buscarLibros(){
+        for (String cod : this.catalogo.keySet()){
+            return this.catalogo.get(cod);
+        }
+        return null;
     }
 
 
