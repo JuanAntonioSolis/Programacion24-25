@@ -11,8 +11,8 @@ public class Libro {
     private String genero;
     private Integer releaseYear;
 
-    public Libro(String titulo, String autor, String genero, Integer releaseYear) {
-        this.ISBN = UUID.randomUUID().toString();
+    public Libro(String ISBN,String titulo, String autor, String genero, Integer releaseYear) {
+        this.ISBN = ISBN;
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;

@@ -156,7 +156,6 @@ public class Biblioteca {
             this.prestamos.get(usuarios.get(dni)).add(new Prestamo(this.usuarios.get(dni),this.catalogo.get(isbn),LocalDate.now()));
             this.prestamos.put(this.usuarios.get(dni), this.prestamos.get(usuarios.get(dni)));
         }
-
     }
 
     public void devolverLibro(String dni, String isbn){
@@ -177,12 +176,26 @@ public class Biblioteca {
         return this.prestamos.get(usuarios.get(dni));
     }
 
-    public Libro buscarLibros(){
+
+    public void listarLibrosDisponibles(){
+
         for (String cod : this.catalogo.keySet()){
-            return this.catalogo.get(cod);
+            for (Usuario user : this.prestamos.keySet()){
+                for (Prestamo prest : this.prestamos.get(user)){
+                    if (prest.getLibro().getISBN().equals(cod) && this.esLibroDisponble(cod)){
+                        System.out.println(this.catalogo.get(cod));
+                    }
+                }
+            }
         }
-        return null;
+
     }
+
+
+
+
+
+
 
 
 
