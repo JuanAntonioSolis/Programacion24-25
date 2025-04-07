@@ -152,10 +152,13 @@ public class Biblioteca {
 
     public void prestarLibro(String dni, String isbn){
 
-        if (this.esLibroDisponble(isbn)){
-            this.prestamos.get(usuarios.get(dni)).add(new Prestamo(this.usuarios.get(dni),this.catalogo.get(isbn),LocalDate.now()));
+        if (this.esLibroDisponble(isbn) && usuarios.containsKey(dni)){
+            this.prestamos.get(usuarios.get(dni)).add(new Prestamo(this.usuarios.get(dni),
+                    this.catalogo.get(isbn),LocalDate.now()));
             this.prestamos.put(this.usuarios.get(dni), this.prestamos.get(usuarios.get(dni)));
         }
+
+
     }
 
     public void devolverLibro(String dni, String isbn){
@@ -182,12 +185,20 @@ public class Biblioteca {
         for (String cod : this.catalogo.keySet()){
             for (Usuario user : this.prestamos.keySet()){
                 for (Prestamo prest : this.prestamos.get(user)){
-                    if (prest.getLibro().getISBN().equals(cod) && this.esLibroDisponble(cod)){
+
+                    if (prest.getLibro().getISBN().equals(cod)){
                         System.out.println(this.catalogo.get(cod));
                     }
+
                 }
             }
         }
+
+
+
+
+
+
 
     }
 

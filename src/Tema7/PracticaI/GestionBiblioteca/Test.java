@@ -29,8 +29,6 @@ public class Test {
         bt1.prestarLibro("54118457D","LB1");
 
 
-        System.out.println(bt1.buscarPrestamosUsuario("54118457D"));
-
         bt1.listarLibrosDisponibles();
 
 
