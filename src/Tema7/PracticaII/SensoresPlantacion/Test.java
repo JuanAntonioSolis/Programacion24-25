@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Test {
@@ -29,10 +31,25 @@ public class Test {
                 .filter(r -> r.getHumedad() < 70)
                 .forEach(System.out::println);
 
+        System.out.println("---------------------------");
         System.out.println("2. Registro con la temperatura más alta");
-        long maxi = Stream.of(registros)
-                .max(Comparator.comparing(Registro::getTemperatura))
-                .orElseThrow();
+        Optional<Registro> registro = registros.stream()
+                .max(Comparator.comparing(Registro::getTemperatura));
+
+        System.out.println(registro);
+
+        System.out.println("---------------------------");
+        System.out.println("3. Lista con las fechas/horas de cada registro");
+        List<LocalDateTime> fechayhora = registros.stream()
+                .map(Registro::getFechaHora)
+                .collect(Collectors.toList());
+
+        System.out.println(fechayhora);
+
+        System.out.println("---------------------------");
+        System.out.println("4. 5 de humedad más en cada registro");
+
+
 
 
 
