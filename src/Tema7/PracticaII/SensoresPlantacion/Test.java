@@ -48,6 +48,11 @@ public class Test {
 
         System.out.println("---------------------------");
         System.out.println("4. 5 de humedad más en cada registro");
+        System.out.println(registros);
+        registros.stream()
+                .forEach(r -> r.setHumedad(r.getHumedad()+5));
+        System.out.println(registros);
+
 
 
 
