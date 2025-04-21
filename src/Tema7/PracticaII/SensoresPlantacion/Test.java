@@ -44,7 +44,9 @@ public class Test {
 
         System.out.println("---------------------------");
         System.out.println("4. 5 de humedad más en cada registro");
-        //System.out.println(registros);
+        registros.stream()
+                        .peek(r -> r.setHumedad(r.getHumedad()+5))
+                        .forEach(System.out::println);
 
         System.out.println("---------------------------");
         System.out.println("5. Registro con temperatura más baja que tenga humedad mayor a 80, todos sus datos");
@@ -88,8 +90,8 @@ public class Test {
         System.out.println("---------------------------");
         System.out.println("10. Temperatura promedio de todos los registros");
         Double media = registros.stream()
-                .map(Registro::getTemperatura)
-                .collect(Collectors.averagingDouble(Double::doubleValue));
+                //.map(Registro::getTemperatura)
+                .collect(Collectors.averagingDouble(Registro::getTemperatura));
 
         System.out.println(media);
 
