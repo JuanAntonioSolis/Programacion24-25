@@ -51,7 +51,44 @@ public class Test {
         Transaccion t4 = new Transaccion(ct4,800.0, LocalDate.of(2025,4,1),
                 TipoTransaccion.INGRESO,"NominaAbril");
 
-        santander.getTransaccionesImporteMinimo(800.0);
+        ct1.addTransaccion(t1);
+        ct3.addTransaccion(t2);
+        ct2.addTransaccion(t3);
+        ct4.addTransaccion(t4);
+
+        System.out.println("=====================");
+        System.out.println("Transacciones de un importe mínimo");
+        santander.getTransaccionesImporteMinimo(799.0);
+
+        System.out.println("=====================");
+        System.out.println("Ingresos totales");
+        santander.getIngresosTotales();
+
+        System.out.println("=====================");
+        System.out.println("Gastos totales");
+        santander.getGastosTotales();
+
+        System.out.println("=====================");
+        System.out.println("Cuentas ordenadas por saldo disponible");
+        santander.getCuentasPorSaldo();
+
+        System.out.println("=====================");
+        System.out.println("Número de transacciones por cuenta");
+        santander.getNumTransaccionesPorCuenta();
+
+        System.out.println("=====================");
+        System.out.println("Cuentas activas");
+        santander.getCuentasActivas();
+
+        System.out.println("=====================");
+        System.out.println("Transacciones por descripcion");
+        santander.getTransaccionesPorDescripcio("Nomina");
+
+        System.out.println("=====================");
+        System.out.println("Análisis temporal");
+        santander.showAnalisisTemporal();
+
+
 
 
 

@@ -61,32 +61,34 @@ public class Banco {
     }
 
     public void getIngresosTotales(){
-        cuentas.stream()
+        double ingresos = cuentas.stream()
                 .flatMap(c -> c.getTransacciones().stream())
                 .filter(t -> t.getTipo().equals(TipoTransaccion.INGRESO))
                 .mapToDouble(Transaccion::getImporte)
                 .summaryStatistics()
                 .getSum();
+        System.out.println(ingresos);
     }
 
     public void getGastosTotales(){
-        cuentas.stream()
+        double gastos = cuentas.stream()
                 .flatMap(c -> c.getTransacciones().stream())
                 .filter(t -> t.getTipo().equals(TipoTransaccion.GASTO))
-                .map(Transaccion::getImporte)
-                .reduce(Double::sum);
+                .mapToDouble(Transaccion::getImporte)
+                .summaryStatistics()
+                .getSum();
+        System.out.println(gastos);
     }
 
     public void getCuentasPorSaldo(){
         cuentas.stream()
-                .sorted(Comparator.comparing(Cuenta::getSaldo))
+                .sorted(Comparator.comparing(Cuenta::getSaldo).reversed())
                 .forEach(System.out::println);
     }
 
     public void getNumTransaccionesPorCuenta(){
-        Map<String,Long> transPorCuenta = cuentas.stream()
-                .collect(Collectors.groupingBy(Cuenta::getId,Collectors.counting()));
-
+        Map<String,Integer> transPorCuenta = cuentas.stream()
+                .collect(Collectors.toMap(Cuenta::getId,c -> c.getTransacciones().size()));
         transPorCuenta.forEach( (k,v) -> System.out.println(k + ": " + v));
     }
 
@@ -104,9 +106,12 @@ public class Banco {
                         .filter(t -> t.getDescripcion().contains(palabra))
                         .collect(Collectors.toSet())));
         transPorDesc.forEach((k,v) -> {
-            System.out.println(k + " - ");
-            v.stream().forEach( t -> System.out.println(t + ", "));
+            System.out.println(k + " - " + v);
+            /*
+            v.forEach(t -> System.out.println(t + ", "));
             System.out.println();
+
+             */
         });
     }
 
