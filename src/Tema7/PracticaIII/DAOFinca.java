@@ -52,6 +52,11 @@ public class DAOFinca {
                 .orElse(null);
     }
 
+
+    /**
+     * Metodo que lee el fichero creado, y crea objetos Finca con los datos del fichero
+     * Y además, añade estos objetos en el array de fincas
+     */
     public void cargarDatos(){
 
         try {
@@ -59,11 +64,10 @@ public class DAOFinca {
                     .map(line -> {
                         List<String> tokens = Arrays.asList(line.split(","));
 
-                        return new Finca(tokens.get(0), tokens.get(1),tokens.get(2),tokens.get(3),tokens.get(4),
-                                tokens.get(5),tokens.get(6));
+                        return new Finca(Integer.parseInt(tokens.get(0)), tokens.get(1),Double.parseDouble(tokens.get(2)),
+                                Integer.parseInt(tokens.get(3)),Double.parseDouble(tokens.get(4)), tokens.get(5),tokens.get(6));
                     })
                     .toList();
-
 
         } catch (IOException e) {
             throw new RuntimeException(e);
