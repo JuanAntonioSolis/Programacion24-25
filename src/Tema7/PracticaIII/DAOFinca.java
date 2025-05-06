@@ -69,9 +69,13 @@ public class DAOFinca {
                     })
                     .toList();
 
+            List<Finca> paLLenar;
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
 
     }
 
