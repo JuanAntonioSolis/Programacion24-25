@@ -16,6 +16,10 @@ public class DAOFinca {
         //this.cargarDatos();
     }
 
+    public void setFincas(ArrayList<Finca> fincas) {
+        this.fincas = fincas;
+    }
+
     public ArrayList<Finca> getFincas() {
         return fincas;
     }
@@ -66,10 +70,12 @@ public class DAOFinca {
 
                         return new Finca(Integer.parseInt(tokens.get(0)), tokens.get(1),Double.parseDouble(tokens.get(2)),
                                 Integer.parseInt(tokens.get(3)),Double.parseDouble(tokens.get(4)), tokens.get(5),tokens.get(6));
+
+
                     })
                     .toList();
 
-            List<Finca> paLLenar;
+            this.setFincas(new ArrayList<>(huertos));
 
         } catch (IOException e) {
             throw new RuntimeException(e);
