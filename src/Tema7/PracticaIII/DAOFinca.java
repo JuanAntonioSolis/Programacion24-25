@@ -13,7 +13,7 @@ public class DAOFinca {
 
     public DAOFinca() {
         fincas = new ArrayList<>();
-        //this.cargarDatos();
+        this.cargarDatos();
     }
 
     public void setFincas(ArrayList<Finca> fincas) {
@@ -64,18 +64,15 @@ public class DAOFinca {
     public void cargarDatos(){
 
         try {
-            List<Finca> huertos = Files.lines(Paths.get("scr/Tema7/PracticaIII/fichero.csv"))
-                    .map(line -> {
-                        List<String> tokens = Arrays.asList(line.split(","));
+            Files.lines(Paths.get("scr/Tema7/PracticaIII/fichero.csv"))
+                    .map(linea -> {
+                        List<String> tokens = Arrays.asList(linea.split(","));
 
-                        return new Finca(Integer.parseInt(tokens.get(0)), tokens.get(1),Double.parseDouble(tokens.get(2)),
-                                Integer.parseInt(tokens.get(3)),Double.parseDouble(tokens.get(4)), tokens.get(5),tokens.get(6));
+                        Finca fn = new Finca(Integer.valueOf(tokens.get(0)),tokens.get(1),Double.valueOf(tokens.get(2)),
+                                Integer.valueOf(tokens.get(3)),Double.valueOf(tokens.get(4)),tokens.get(5),tokens.get(6));
 
-
-                    })
-                    .toList();
-
-            this.setFincas(new ArrayList<>(huertos));
+                        return fincas.add(fn);
+                    });
 
         } catch (IOException e) {
             throw new RuntimeException(e);
