@@ -5,7 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DAOFinca {
 
@@ -77,6 +79,24 @@ public class DAOFinca {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    /**
+     * Devuelve todas las fincas ordenadas de mayor a menor superficie.
+     * @return
+     */
+    public List<Finca> getFincasPorSuperficie(){
+        return fincas.stream()
+                .sorted(Comparator.comparing(Finca::getSuperficie).reversed())
+                .toList();
+    }
+
+    /**
+     * Devuelve las tres fincas más grandes
+     * @return
+     */
+    public List<Finca> getMasGrandes(){
 
     }
 
