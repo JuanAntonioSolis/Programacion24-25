@@ -78,8 +78,6 @@ public class DAOFinca {
             throw new RuntimeException(e);
         }
 
-
-
     }
 
 
