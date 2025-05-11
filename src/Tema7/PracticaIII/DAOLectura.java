@@ -68,6 +68,17 @@ public class DAOLectura {
     }
 
 
+    /**
+     * Devuelve todas las lecturas agrupadas por Finca(ID)
+     * @return
+     */
+    public HashMap<int, List<Lectura>> getLecturasPorFinca(){
+
+        return null;
+
+    }
+
+
 
 
 
