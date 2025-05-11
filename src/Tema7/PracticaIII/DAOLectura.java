@@ -14,7 +14,7 @@ public class DAOLectura {
 
     public DAOLectura() {
         this.lecturas = new HashSet<>();
-        //this.cargarDatos();
+        this.cargarDatos();
     }
 
     public DAOLectura(Set<Lectura> lecturas) {
@@ -66,6 +66,8 @@ public class DAOLectura {
             throw new RuntimeException(e);
         }
     }
+
+
 
 
 

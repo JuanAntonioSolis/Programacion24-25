@@ -3,10 +3,7 @@ package Tema7.PracticaIII;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DAOFinca {
@@ -97,8 +94,40 @@ public class DAOFinca {
      * @return
      */
     public List<Finca> getMasGrandes(){
-
+        return fincas.stream()
+                .sorted(Comparator.comparing(Finca::getSuperficie).reversed())
+                .limit(3)
+                .toList();
     }
+
+    /**
+     * Muestra las fincas agrupadas por ciudad
+     * @return
+     */
+    public HashMap<String, List<Finca>> getFincasPorCiudad(){
+
+        Map<String,List<Finca>> fincas = this.fincas.stream()
+                .collect(Collectors.groupingBy(Finca::getProvincia));
+
+        HashMap<String, List<Finca>> fincaCiudad = new HashMap<>(fincas);
+
+        return fincaCiudad;
+    }
+
+    /**
+     * Devuelve el nombre de todas las fincas entre 50 y 150 metros cuadrados de superficie
+     * @return
+     */
+    public List<String> getFincasMedio(){
+        return this.fincas.stream()
+                .filter(f -> f.getSuperficie() > 50 && f.getSuperficie()<150)
+                .map(Finca::getNombre)
+                .toList();
+    }
+
+
+
+
 
 
 
