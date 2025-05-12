@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DAOLectura {
 
@@ -72,11 +73,87 @@ public class DAOLectura {
      * Devuelve todas las lecturas agrupadas por Finca(ID)
      * @return
      */
-    public HashMap<int, List<Lectura>> getLecturasPorFinca(){
+    public HashMap<Integer, List<Lectura>> getLecturasPorFinca(){
 
-        return null;
+        Map<Integer, List<Lectura>> lecss = lecturas.stream()
+                .collect(Collectors.groupingBy(lect -> lect.getFinca().getId()));
+
+        HashMap<Integer, List<Lectura>> lecsPorFinca = new HashMap<>(lecss);
+
+        return lecsPorFinca;
+    }
+
+
+    /**
+     * Devuelve la temp máxima de todas las lecturas de una finca
+     * @param id
+     * @return
+     */
+    public Double getTempMaximaFinca(int id){
+
+        return lecturas.stream()
+                .filter(lectura -> lectura.getFinca().getId() == id)
+                .map(Lectura::getTemperatura)
+                .max(Comparator.naturalOrder())
+                .orElseThrow();
+    }
+
+    /**
+     * Devuelve la temperatura mínima de todas las lecturas de una finca
+     * @param id
+     * @return
+     */
+    public Double getTempMinimaFinca(int id){
+        return lecturas.stream()
+                .filter(lectura -> lectura.getFinca().getId() == id)
+                .map(Lectura::getTemperatura)
+                .min(Comparator.naturalOrder())
+                .orElseThrow();
+    }
+
+    /**
+     * Para una finca devuelve una lista de los valores de humedad ordenados por fecha
+     * @param id
+     * @return
+     */
+    public List<Double> getHumedadPorFinca(int id){
+
+        return lecturas.stream()
+                .filter(lectura -> lectura.getFinca().getId()==id)
+                .sorted(Comparator.comparing(Lectura::getMomento))
+                .map(Lectura::getHumedad)
+                .toList();
 
     }
+
+    /**
+     * Para una finca devuelve una lista de los valores de temperatura ordenados por fecha
+     * @param id
+     * @return
+     */
+    public List<Double> getTemperaturaPorFinca(int id){
+        return lecturas.stream()
+                .filter(lectura -> lectura.getFinca().getId()==id)
+                .sorted(Comparator.comparing(Lectura::getMomento))
+                .map(Lectura::getHumedad)
+                .toList();
+    }
+
+    /**
+     * Muestra todas las temperaturas de una finca  en dia concreto ordenado por fecha(hora)
+     * @param id
+     * @param dia
+     * @return
+     */
+    public List<Double> getTempDiaPorFinca(int id,LocalDate dia){
+        return lecturas.stream()
+                .filter(lectura -> lectura.getFinca().getId()==id)
+                .filter(lectura -> lectura.getMomento().equals(dia))
+                .sorted(Comparator.comparing(lec -> lec.getMomento().getHour()))
+                .map(Lectura::getTemperatura)
+                .toList();
+    }
+
 
 
 
