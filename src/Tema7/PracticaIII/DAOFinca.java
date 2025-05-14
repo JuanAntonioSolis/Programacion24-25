@@ -2,6 +2,7 @@ package Tema7.PracticaIII;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -60,18 +61,21 @@ public class DAOFinca {
      * Metodo que lee el fichero creado, y crea objetos Finca con los datos del fichero
      * Y además, añade estos objetos en el array de fincas
      */
-    public void cargarDatos(){
+    private void cargarDatos(){
 
         try {
-            Files.lines(Paths.get("scr/Tema7/PracticaIII/fichero.csv"))
-                    .map(linea -> {
-                        List<String> tokens = Arrays.asList(linea.split(","));
+            Files.lines(Path.of("src/Tema7/PracticaIII/fichero.csv"))
+                    .map(line -> {
+                        List<String> valores = Arrays.asList(line.split(","));
 
-                        Finca fn = new Finca(Integer.valueOf(tokens.get(0)),tokens.get(1),Double.valueOf(tokens.get(2)),
-                                Integer.valueOf(tokens.get(3)),Double.valueOf(tokens.get(4)),tokens.get(5),tokens.get(6));
+                        return new Finca(Integer.valueOf(valores.get(0)),valores.get(1),
+                                Double.valueOf(valores.get(2)), Integer.valueOf(valores.get(3)),
+                                Double.valueOf(valores.get(4)),valores.get(5),valores.get(6));
 
-                        return fincas.add(fn);
-                    });
+                    })
+                    .toList();
+
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);

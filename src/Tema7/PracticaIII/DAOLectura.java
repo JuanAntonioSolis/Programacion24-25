@@ -34,28 +34,36 @@ public class DAOLectura {
         this.lecturas.remove(lectura);
     }
 
+    /**
+     * Lee el fichero lecturas.csv y para cada línea crea una Lectura
+     * Lo añade a this.lecturas
+     * Busca su finca correspondiente con DAOFinca.findByID
+     */
     public void cargarDatos(){
 
-        List<Finca> fincas = new ArrayList<>();
+        DAOFinca df = new DAOFinca();
 
         try {
             Files.lines(Path.of("src/Tema7/PracticaIII/lecturas.csv"))
-                    .map(linea -> {
-                        List<String> tokens = Arrays.asList(linea.split(","));
+                    .map(line -> {
+                        List<String> valores = Arrays.asList(line.split(","));
 
-                        Lectura lc = new Lectura(Integer.valueOf(tokens.get(0)),Double.valueOf(tokens.get(1)),
-                                Double.valueOf(tokens.get(2)), LocalDateTime.of(LocalDate.parse(tokens.get(3)),
-                                LocalTime.parse(tokens.get(4))),
-                                fincas.get(fincas.indexOf(new Finca(Integer.valueOf(tokens.get(5)),null,
-                                        null,null,null,null,null))));
+                        return new Lectura(Integer.valueOf(valores.get(0)),Double.valueOf(valores.get(1)),
+                                Double.valueOf(valores.get(2)),
+                                LocalDateTime.of(LocalDate.parse(valores.get(3)),LocalTime.parse(valores.get(4))),
+                                df.findById(Integer.valueOf(valores.get(5))));
+                    })
+                    .toList();
 
-                        return lecturas.add(lc);
-                    });
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
+    /**
+     * Los datos de this.lecturas los graba en lecturas.csv
+     */
     public void grabarDatos(){
 
         try {
@@ -69,8 +77,9 @@ public class DAOLectura {
     }
 
 
+
     /**
-     * Devuelve todas las lecturas agrupadas por Finca(ID)
+     * Devuelve todas las lecturas agrupadas por Finca (ID)
      * @return
      */
     public HashMap<Integer, List<Lectura>> getLecturasPorFinca(){
@@ -111,8 +120,7 @@ public class DAOLectura {
                 .orElseThrow();
     }
 
-    /**
-     * Para una finca devuelve una lista de los valores de humedad ordenados por fecha
+     /** Para una finca devuelve una lista de los valores de humedad ordenados por fecha
      * @param id
      * @return
      */

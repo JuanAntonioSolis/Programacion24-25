@@ -7,7 +7,7 @@ public class TestFincas {
         DAOLectura daoL = new DAOLectura();
         DAOFinca daoF = new DAOFinca();
 
-        daoL.getLecturasPorFinca();
+        daoL.getLecturas();
 
 
 
