@@ -5,25 +5,25 @@ import java.util.UUID;
 
 public class Persona {
 
-    protected String id;
+    protected Long id;
     protected String nombre;
     protected String apellidos;
     protected String mail;
-    protected Long movil;
+    protected String movil;
 
-    public Persona(String nombre, String apellidos, String mail, Long movil) {
-        this.id = UUID.randomUUID().toString();
+    public Persona(Long id,String nombre, String apellidos, String mail, String movil) {
+        this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.mail = mail;
         this.movil = movil;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -51,11 +51,11 @@ public class Persona {
         this.mail = mail;
     }
 
-    public Long getMovil() {
+    public String getMovil() {
         return movil;
     }
 
-    public void setMovil(Long movil) {
+    public void setMovil(String movil) {
         this.movil = movil;
     }
 

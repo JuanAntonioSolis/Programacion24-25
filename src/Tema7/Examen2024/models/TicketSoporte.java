@@ -3,7 +3,7 @@ package Tema7.Examen2024.models;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class TicketSoporte {
+public class TicketSoporte implements Comparable<TicketSoporte> {
 
     private Long id;
     private LocalDate fechaCreacion;
@@ -14,12 +14,9 @@ public class TicketSoporte {
     private Tecnico asignado;
     private String comentarios;
 
-    private static Long autoincremento = 1L;
-
     public TicketSoporte(Long id, LocalDate fechaCreacion, LocalDate fechaFinalizacion, Estado estado,
                          Integer prioridad, Usuario solicitante, Tecnico asignado, String comentarios) {
-        autoincremento++;
-        this.id = autoincremento;
+        this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.fechaFinalizacion = fechaFinalizacion;
         this.estado = estado;
@@ -112,8 +109,8 @@ public class TicketSoporte {
         sb.append(", fechaFinalizacion=").append(fechaFinalizacion);
         sb.append(", estado=").append(estado);
         sb.append(", prioridad=").append(prioridad);
-        sb.append(", solicitante=").append(solicitante);
-        sb.append(", asignado=").append(asignado);
+        sb.append(", solicitante=").append(solicitante.getNombre());
+        sb.append(", asignado=").append(asignado.getNombre());
         sb.append(", comentarios='").append(comentarios).append('\'');
         sb.append('}');
         return sb.toString();
@@ -124,11 +121,22 @@ public class TicketSoporte {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TicketSoporte that = (TicketSoporte) o;
-        return Objects.equals(fechaCreacion, that.fechaCreacion);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(fechaCreacion);
+        return Objects.hashCode(id);
     }
+
+    /**
+     * Comparable por fechaCreacion
+     * @param o the object to be compared.
+     * @return
+     */
+    @Override
+    public int compareTo(TicketSoporte o) {
+        return this.getFechaCreacion().compareTo(o.getFechaCreacion());
+    }
+
 }

@@ -9,14 +9,26 @@ import java.util.stream.Collectors;
 
 public class ServicioSoporte {
 
-    List<TicketSoporte> tickets;
-    Set<Usuario> usuarios;
-    Set<Tecnico> tecnicos;
+    ArrayList<TicketSoporte> tickets;
+    HashSet<Usuario> usuarios;
+    HashSet<Tecnico> tecnicos;
 
     public ServicioSoporte() {
         tickets = new ArrayList<>();
         usuarios = new HashSet<>();
         tecnicos = new HashSet<>();
+    }
+
+    public void setTickets(ArrayList<TicketSoporte> tickets) {
+        this.tickets = tickets;
+    }
+
+    public void setUsuarios(HashSet<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public void setTecnicos(HashSet<Tecnico> tecnicos) {
+        this.tecnicos = tecnicos;
     }
 
     public List<TicketSoporte> getTickets() {
@@ -54,7 +66,7 @@ public class ServicioSoporte {
                 .map(t -> t.getId())
                 .orElseThrow();
 
-        this.tickets.add(new TicketSoporte(max+1L,fechaCreacion,fechaFin,null,
+        this.tickets.add(new TicketSoporte(max+1,fechaCreacion,fechaFin,Estado.ABIERTO,
                 prioridad,usuario,tecnico,comentarios));
     }
 
@@ -67,12 +79,12 @@ public class ServicioSoporte {
      * @param id
      * @return
      */
-    public Tecnico getTecnico(int id) {
+    public Tecnico getTecnico(Long id) {
 
         return tecnicos.stream()
-                .findFirst()
                 .filter(t -> t.getId().equals(id))
-                .orElseThrow();
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -80,11 +92,11 @@ public class ServicioSoporte {
      * @param id
      * @return
      */
-    public Usuario getUsuario(int id) {
+    public Usuario getUsuario(Long id) {
         return usuarios.stream()
-                .findFirst()
                 .filter(u -> u.getId().equals(id))
-                .orElseThrow();
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -103,9 +115,15 @@ public class ServicioSoporte {
      * @return
      */
     public Map<Especialidad, List<Tecnico>> getTecnicosGroupByEspecialidad(){
-        return tecnicos.stream()
-                .sorted(Comparator.comparing(Tecnico::getValoracion))
+        Map<Especialidad, List<Tecnico>> tecs = tecnicos.stream()
                 .collect(Collectors.groupingBy(t -> t.getEspecialidad()));
+
+        tecs.forEach((k,v) -> {
+            v.sort(Comparator.comparing(Tecnico::getValoracion));
+        });
+
+        return tecs;
+
     }
 
     /**
@@ -146,14 +164,12 @@ public class ServicioSoporte {
      * @param prioridad
      * @return
      */
-    public Integer getTotalTicketsResueltos(Integer prioridad){
+    public Long getTotalTicketsResueltos(Integer prioridad){
 
-        Long cuenta = tickets.stream()
+        return tickets.stream()
                 .filter(t -> t.getEstado().equals(Estado.RESUELTO))
                 .filter(t -> t.getPrioridad().equals(prioridad))
                 .count();
-
-        return cuenta.intValue();
     }
 
     /**
@@ -167,8 +183,7 @@ public class ServicioSoporte {
        return tickets.stream()
                 .filter(t -> t.getPrioridad().equals(prioridad))
                 .filter(t -> t.getEstado().equals(estado))
-                .sorted(Comparator.comparing(TicketSoporte::getFechaCreacion).reversed())
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(TreeSet::new));
     }
 
     /**
@@ -197,14 +212,12 @@ public class ServicioSoporte {
      * Devuelve un total de tickets cerrados que han tardado más de una semana en cerrarse desde que se abrieron
      * @return
      */
-    public Integer getTotalTicketsRetardados(){
+    public Long getTotalTicketsRetardados(){
 
-        Long cuenta = tickets.stream()
+        return tickets.stream()
                 .filter(t -> t.getEstado().equals(Estado.RESUELTO))
-                .filter(t -> ChronoUnit.DAYS.between(t.getFechaCreacion(),t.getFechaFinalizacion()) > 7)
+                .filter(t -> ChronoUnit.DAYS.between(t.getFechaFinalizacion(),t.getFechaCreacion()) > 7)
                 .count();
-
-        return cuenta.intValue();
 
     }
 
@@ -216,8 +229,10 @@ public class ServicioSoporte {
     public Double getMediaResolucionTickets(Integer prioridad){
         return tickets.stream()
                 .filter(t -> t.getPrioridad().equals(prioridad))
-                .map(t -> ChronoUnit.DAYS.between(t.getFechaCreacion(),t.getFechaFinalizacion()))
-                .collect(Collectors.averagingDouble(Double::valueOf));
+                .filter(t -> t.getEstado().equals(Estado.RESUELTO))
+                .mapToLong(t -> ChronoUnit.DAYS.between(t.getFechaCreacion(),t.getFechaFinalizacion()))
+                .average()
+                .orElse(0.0);
     }
 
     /**
@@ -227,9 +242,9 @@ public class ServicioSoporte {
      */
     public Map<Tecnico, Double> getMediaResolucionTicketsGroupByTecnico(){
         return tickets.stream()
-                .collect(Collectors.groupingBy(TicketSoporte::getAsignado,Collectors.averagingDouble(t ->
+                .filter(t -> t.getEstado().equals(Estado.RESUELTO))
+                .collect(Collectors.groupingBy(TicketSoporte::getAsignado,Collectors.averagingLong(t ->
                         ChronoUnit.DAYS.between(t.getFechaCreacion(),t.getFechaFinalizacion()))));
-
     }
 
     /**
@@ -240,7 +255,7 @@ public class ServicioSoporte {
     public Boolean areAllTicketsFinishedLessThanTenDays(){
         return tickets.stream()
                 .filter(t -> t.getEstado().equals(Estado.RESUELTO))
-                .anyMatch(t -> ChronoUnit.DAYS.between(t.getFechaCreacion(),t.getFechaFinalizacion()) < 10);
+                .allMatch(t -> ChronoUnit.DAYS.between(t.getFechaCreacion(),t.getFechaFinalizacion()) < 10);
     }
 
     /**
@@ -249,8 +264,8 @@ public class ServicioSoporte {
      */
     public Optional<TicketSoporte> getFirstTicketSolvedOneDay(){
         return tickets.stream()
-                .findFirst()
-                .filter(t -> t.getFechaCreacion().equals(t.getFechaFinalizacion()));
+                .filter(t -> t.getFechaCreacion().equals(t.getFechaFinalizacion()))
+                .findFirst();
     }
 
 

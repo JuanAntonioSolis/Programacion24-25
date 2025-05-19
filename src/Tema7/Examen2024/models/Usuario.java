@@ -7,8 +7,8 @@ public class Usuario extends Persona {
     private LocalDate fechaAlta;
 
 
-    public Usuario(String nombre, String apellidos, String mail, Long movil, LocalDate fechaAlta) {
-        super(nombre, apellidos, mail, movil);
+    public Usuario(Long id, String nombre, String apellidos, String mail, String movil, LocalDate fechaAlta) {
+        super(id,nombre, apellidos, mail, movil);
         this.fechaAlta = fechaAlta;
     }
 

@@ -5,8 +5,8 @@ public class Tecnico extends Persona{
     private Especialidad especialidad;
     private Integer valoracion;
 
-    public Tecnico(String nombre, String apellidos, String mail, Long movil, Especialidad especialidad, Integer valoracion) {
-        super(nombre, apellidos, mail, movil);
+    public Tecnico(Long id, String nombre, String apellidos, String mail, String movil, Especialidad especialidad, Integer valoracion) {
+        super(id, nombre, apellidos, mail, movil);
         this.especialidad = especialidad;
         this.valoracion = valoracion;
     }
@@ -40,4 +40,6 @@ public class Tecnico extends Persona{
         sb.append('}');
         return sb.toString();
     }
+
+
 }
