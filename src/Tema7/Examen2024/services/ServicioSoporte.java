@@ -47,16 +47,22 @@ public class ServicioSoporte {
         usuarios.add(u);
     }
 
-    public void deleteUsuario(int id){
+    public void deleteUsuario(Long id){
         usuarios.removeIf(u -> u.getId().equals(id));
+        tickets.removeIf(t -> t.getSolicitante().getId().equals(id));
     }
 
     public void addTecnico(Tecnico t){
         tecnicos.add(t);
     }
 
-    public void deleteTecnico(int id){
+    public void deleteTecnico(Long id){
         tecnicos.removeIf(t -> t.getId().equals(id));
+        tickets.removeIf(t -> t.getAsignado().getId().equals(id));
+    }
+
+    public void addTickerSpoporte(TicketSoporte ticket){
+        tickets.add(ticket);
     }
 
     public void addTicketSoporte(LocalDate fechaCreacion, LocalDate fechaFin, Integer prioridad,
