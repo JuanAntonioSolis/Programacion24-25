@@ -13,7 +13,7 @@ public class DAOFinca {
 
     public DAOFinca() {
         fincas = new ArrayList<>();
-        this.cargarDatos();
+        cargarDatos();
     }
 
     public void setFincas(ArrayList<Finca> fincas) {
@@ -61,21 +61,25 @@ public class DAOFinca {
      * Metodo que lee el fichero creado, y crea objetos Finca con los datos del fichero
      * Y además, añade estos objetos en el array de fincas
      */
-    private void cargarDatos(){
+    public void cargarDatos(){
 
         try {
-            Files.lines(Path.of("src/Tema7/PracticaIII/fichero.csv"))
+            List<Finca> nueva = Files.lines(Paths.get("Programacion24-25/src/Tema7/PracticaIII/ceseuves/fincas.csv"))
                     .map(line -> {
-                        List<String> valores = Arrays.asList(line.split(","));
+                        List<String> datos = Arrays.asList(line.split(","));
 
-                        return new Finca(Integer.valueOf(valores.get(0)),valores.get(1),
-                                Double.valueOf(valores.get(2)), Integer.valueOf(valores.get(3)),
-                                Double.valueOf(valores.get(4)),valores.get(5),valores.get(6));
-
+                        Finca fc = new Finca(Integer.valueOf(datos.get(0)),
+                                datos.get(1),
+                                Double.valueOf(datos.get(2)),
+                                Integer.valueOf(datos.get(3)),
+                                Double.valueOf(datos.get(4)),
+                                datos.get(5),
+                                datos.get(6));
+                        return fc;
                     })
                     .toList();
 
-
+            fincas = new ArrayList<>(nueva);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -83,13 +87,15 @@ public class DAOFinca {
 
     }
 
+
+
     /**
      * Devuelve todas las fincas ordenadas de mayor a menor superficie.
      * @return
      */
     public List<Finca> getFincasPorSuperficie(){
         return fincas.stream()
-                .sorted(Comparator.comparing(Finca::getSuperficie).reversed())
+                .sorted(Comparator.comparing(Finca::getSuperficie))
                 .toList();
     }
 

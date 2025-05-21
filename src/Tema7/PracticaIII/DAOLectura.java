@@ -3,9 +3,12 @@ package Tema7.PracticaIII;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,15 +18,15 @@ public class DAOLectura {
 
     public DAOLectura() {
         this.lecturas = new HashSet<>();
-        this.cargarDatos();
-    }
-
-    public DAOLectura(Set<Lectura> lecturas) {
-        this.lecturas = lecturas;
+        cargarDatos();
     }
 
     public Set<Lectura> getLecturas() {
         return lecturas;
+    }
+
+    public void setLecturas(Set<Lectura> lecturas) {
+        this.lecturas = lecturas;
     }
 
     public void addLectura(Lectura lectura) {
@@ -41,19 +44,26 @@ public class DAOLectura {
      */
     public void cargarDatos(){
 
-        DAOFinca df = new DAOFinca();
-
         try {
-            Files.lines(Path.of("src/Tema7/PracticaIII/lecturas.csv"))
+            lecturas = Files.lines(Paths.get("Programacion24-25/src/Tema7/PracticaIII/ceseuves/lecturas.csv"))
                     .map(line -> {
-                        List<String> valores = Arrays.asList(line.split(","));
+                        List<String> tokens = Arrays.asList(line.split(","));
 
-                        return new Lectura(Integer.valueOf(valores.get(0)),Double.valueOf(valores.get(1)),
-                                Double.valueOf(valores.get(2)),
-                                LocalDateTime.of(LocalDate.parse(valores.get(3)),LocalTime.parse(valores.get(4))),
-                                df.findById(Integer.valueOf(valores.get(5))));
+                        DAOFinca daoF = new DAOFinca();
+
+
+                        Lectura lc = new Lectura(Integer.valueOf(tokens.get(0)),
+                                Double.valueOf(tokens.get(1)),
+                                Double.valueOf(tokens.get(2)),
+                                LocalDateTime.of(LocalDate.parse(tokens.get(3)),
+                                        LocalTime.parse(tokens.get(4),DateTimeFormatter.ofPattern("H:mm"))),
+                                daoF.findById(Integer.valueOf(tokens.get(5)))
+                                );
+
+                        return lc;
+
                     })
-                    .toList();
+                    .collect(Collectors.toSet());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -61,15 +71,29 @@ public class DAOLectura {
 
     }
 
+
+
+
+
+
     /**
      * Los datos de this.lecturas los graba en lecturas.csv
      */
     public void grabarDatos(){
 
         try {
-            Files.write(Path.of("src/Tema7/PracticaIII/lecturas.csv"),
+            Files.write(Path.of("Programacion24-25/src/Tema7/PracticaIII/ceseuves/lecturas.csv"),
                     lecturas.stream()
-                            .map(lectura -> lectura.toString())
+                            .map(l -> {
+                                StringBuffer sb = new StringBuffer();
+                                sb.append(l.getId()).append(",");
+                                sb.append(l.getTemperatura()).append(",");
+                                sb.append(l.getHumedad()).append(",");
+                                sb.append(l.getMomento().toLocalDate()).append(",");
+                                sb.append(l.getMomento().toLocalTime()).append(",");
+                                sb.append(l.getFinca().getId());
+                                return sb.toString();
+                            })
                             .toList());
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -156,7 +180,7 @@ public class DAOLectura {
     public List<Double> getTempDiaPorFinca(int id,LocalDate dia){
         return lecturas.stream()
                 .filter(lectura -> lectura.getFinca().getId()==id)
-                .filter(lectura -> lectura.getMomento().equals(dia))
+                .filter(lectura -> lectura.getMomento().toLocalDate().equals(dia))
                 .sorted(Comparator.comparing(lec -> lec.getMomento().getHour()))
                 .map(Lectura::getTemperatura)
                 .toList();

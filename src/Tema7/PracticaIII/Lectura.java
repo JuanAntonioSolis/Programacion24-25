@@ -66,7 +66,7 @@ public class Lectura {
         sb.append(", temperatura=").append(temperatura);
         sb.append(", humedad=").append(humedad);
         sb.append(", momento=").append(momento);
-        sb.append(", finca=").append(finca);
+        sb.append(", finca=").append(finca.getId());
         sb.append('}');
         return sb.toString();
     }
